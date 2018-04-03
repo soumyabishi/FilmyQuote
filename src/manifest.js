@@ -1,11 +1,11 @@
 
 module.exports = {
-  name: 'Vue Extension',
+  name: 'FilmyQuote',
   version: '1.0.0',
-  description: 'Vue.js Chrome Extension Template (wcer)',
-  author: 'yura',
+  description: 'Famous bollywood movie dialogues in your new tab!',
+  author: 'soumyabishi@outlook.com',
   manifest_version: 2,
-  icons: { '16': 'icons/16.png', '128': 'icons/128.png' },
+  icons: { '16': 'icons/fq_16.png', '128': 'icons/fq_128.png' },
   permissions: [
     '<all_urls>',
     '*://*/*',
