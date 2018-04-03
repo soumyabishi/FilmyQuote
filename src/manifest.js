@@ -36,6 +36,10 @@ module.exports = {
     matches: ['<all_urls>'],
     all_frames: true
   }],
+
+    chrome_url_overrides: {
+        "newtab": "pages/app.html"
+    },
   content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'",
   web_accessible_resources: [ 'panel.html', 'js/content.js' ]
 }
