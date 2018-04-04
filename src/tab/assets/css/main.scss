@@ -59,7 +59,7 @@ section.quote{
 
     }
     .progressive-image-wrapper{
-      border-radius: 4px;
+      border-radius: 50%;
       padding-bottom: 250px !important;
     }
   }
@@ -75,17 +75,17 @@ section.quote{
       font-weight: 300;
       font-size: 32px;
         &.small{
-            font-size: 24px;
-        }
-        &.medium{
             font-size: 30px;
         }
-        &.large{
+        &.medium{
             font-size: 36px;
+        }
+        &.large{
+            font-size: 42px;
         }
     }
     p{
-      font-size: 18px;
+      font-size: 16px;
       text-transform: capitalize;
       font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
       opacity: 0.5;
@@ -93,6 +93,9 @@ section.quote{
     .emoji{
       margin-top: 30px;
       display: block;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding-top: 18px;
+      min-height: 63px;
 
       ul.reactions{
         margin: 0;
@@ -102,9 +105,9 @@ section.quote{
           display: inline-block;
           list-style: none;
           position: relative;
-          padding-left: 33px;
-          font-size: 14px;
-          margin-right: 18px;
+          padding-left: 30px;
+          font-size: 12px;
+          margin-right: 20px;
           span.reaction-emo{
             position: absolute;
             left: 0;
@@ -150,17 +153,19 @@ section.quote{
     .button{
       display: inline-block;
       border: 1px dashed #ffffff45;
-      padding: 12px 20px 12px 48px;
+      padding: 10px 22px;
       border-radius: 50px;
       position: relative;
       cursor: pointer;
+      font-size: 12px;
+      padding-left: 48px;
       &:before{
         background: url(../img/pickemoji.svg) no-repeat;
         content: "";
         width: 25px;
         height: 25px;
         top: 9px;
-        left: 17px;
+        left: 16px;
         position: absolute;
         display: inline-block;
         background-size: 50px;

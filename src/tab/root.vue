@@ -62,27 +62,18 @@
                     <section class="quote" v-if="!loading_quote">
                         <div class="quote-wrapper">
                             <div class="poster">
-
                                 <progressive-img
                                         :src="actor_image_url_full" :blur="30"
                                         :placeholder="actor_image_url_thumb"
                                 />
 
-                                <!--<div class="progressive">-->
-                                <!--<img class="preview" v-progressive="actor_image_url" :data-srcset="actor_image_url" :src="actor_image_preview_url" />-->
-                                <!--</div>-->
-
-                                <!--<img class="preview" v-progressive="actor_image_url" :data-srcset="actor_image_url" :src="actor_image_preview_url" />-->
-
-                                <!--<img class="ui top aligned medium rounded image"-->
-                                <!--v-bind:src="filmyQuotes.dialogue.star_image_urls.full">-->
                             </div>
 
                             <div class="content">
 
                                 <img src="./assets/img/quote.svg" alt="Quote" class="quote_icon">
-                                <h1 class="ibm-type-serif" v-bind:class="{'small': font_isSmall, 'medium': font_isMedium, 'large': font_isLarge}">{{filmyQuotes.dialogue.dialogue}}</h1>
-                                <p class="text">-&nbsp;{{filmyQuotes.dialogue.star}}</p>
+                                <h1 class="quote-text" v-bind:class="{'small': font_isSmall, 'medium': font_isMedium, 'large': font_isLarge}">{{filmyQuotes.dialogue.dialogue}}</h1>
+                                <p class="text">&mdash;&nbsp;{{filmyQuotes.dialogue.star}}, {{filmyQuotes.dialogue.movie_name}} ({{filmyQuotes.dialogue.movie_year}})</p>
 
                                 <div class="emoji">
                                     <ul class="reactions">
@@ -561,11 +552,20 @@
     a{
         cursor: pointer;
     }
+
+    h1.quote-text{
+        font-family: freight-sans-pro, sans-serif;
+        padding-top: 0;
+        margin-top: 0;
+        font-style: italic;
+    }
     @import './assets/css/semantic.min.css';
     @import './assets/css/animate.css';
     @import '../../node_modules/inter-ui/inter-ui.css';
     @import '../../node_modules/@ibm/type/css/ibm-type.min.css';
     @import './assets/css/main.css';
     @import '../../node_modules/vue-range-slider/dist/vue-range-slider.css';
+    @import url("https://use.typekit.net/fde6xbm.css");
+
 
 </style>
