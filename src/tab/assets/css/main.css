@@ -15,15 +15,25 @@ a.logo-container {
   a.logo-container img {
     width: 135px; }
 
-a.refine-dialogues-button {
+.refine-dialogues-button {
   position: absolute;
-  right: 40px;
-  top: 40px; }
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
+  width: 20px;
+  opacity: 0.5; }
+  .refine-dialogues-button:hover {
+    opacity: 1; }
 
-a.share-dialogue-button {
+.share-dialogue-button {
   position: absolute;
-  right: 100px;
-  top: 40px; }
+  right: 77px;
+  top: 30px;
+  opacity: 0.5;
+  cursor: pointer;
+  width: 16px; }
+  .share-dialogue-button:hover {
+    opacity: 1; }
 
 div.filter-modal-content {
   text-align: center; }

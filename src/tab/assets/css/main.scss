@@ -21,16 +21,28 @@ a.logo-container{
   }
 }
 
-a.refine-dialogues-button{
-    position: absolute;
-    right: 40px;
-    top:40px;
+.refine-dialogues-button{
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
+  width: 20px;
+  opacity: 0.5;
+  &:hover{
+    opacity: 1;
+  }
 }
 
-a.share-dialogue-button{
+.share-dialogue-button{
     position: absolute;
-    right: 100px;
-    top:40px;
+    right: 77px;
+    top: 30px;
+    opacity: 0.5;
+    cursor: pointer;
+     width: 16px;
+    &:hover{
+      opacity: 1;
+    }
 }
 
 div.filter-modal-content{

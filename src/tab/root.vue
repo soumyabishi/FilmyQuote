@@ -13,13 +13,10 @@
 
         <p class="overlay-text">FilmyQuote</p>
 
-        <a class="ui compact icon button refine-dialogues-button" @click="open_filter_modal()">
-            <i class="cogs icon"></i>
-        </a>
 
-        <a class="ui compact icon button share-dialogue-button" @click="init_share()">
-            <i class="download icon"></i>
-        </a>
+           <img src="./assets/img/settings.svg" class="refine-dialogues-button" @click="open_filter_modal()">
+           <img src="./assets/img/share.svg" class="share-dialogue-button"  @click="init_share()">
+
 
         <div class="ui basic modal filter_modal">
             <h1 class="ui header">
