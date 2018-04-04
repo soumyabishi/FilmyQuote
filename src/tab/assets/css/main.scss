@@ -99,7 +99,7 @@ section.quote{
 
       ul.reactions{
         margin: 0;
-        padding: 0;
+        padding: 10px 0px;
         display: inline-block;
         li{
           display: inline-block;
@@ -313,6 +313,7 @@ p.overlay-text{
   border-radius: 100%;
   background-color: #fff;
   animation: loader 4800ms infinite;
+  transform: scale(0.8);
 }
 
 .anim{
