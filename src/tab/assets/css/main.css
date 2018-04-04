@@ -36,7 +36,7 @@ a.logo-container {
     opacity: 1; }
 
 div.filter-modal-content {
-  text-align: center; }
+  padding: 30px !important; }
   div.filter-modal-content button.tag_button {
     margin: 5px; }
 

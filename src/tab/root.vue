@@ -1,13 +1,12 @@
 <template>
     <div class="quote-wrapper" id="quote_wrapper">
 
-
         <a class="logo-container" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()">
             <img alt="FilmyQuote" src="./assets/img/logo.svg">
         </a>
 
         <p class="made-by ibm-type-mono">
-            Made with love by <a href="http://github.com/soumyabishi" target="_blank">Soumya</a> & <a href="https://github.com/shiv-param" target="_blank">Shiv</a>.
+            Made with love by <a href="https://github.com/soumyabishi" target="_blank">Soumya</a> & <a href="https://github.com/shiv-param" target="_blank">Shiv</a>.
         </p>
 
 
@@ -18,20 +17,35 @@
            <img src="./assets/img/share.svg" class="share-dialogue-button"  @click="init_share()">
 
 
-        <div class="ui basic modal filter_modal">
-            <h1 class="ui header">
-                Dialogue Preferences
-                <div class="sub header">Set your preferences to discover dialogues you love</div>
-            </h1>
+        <div class="ui modal filter_modal">
+            <!--<div class="ui header">-->
+               <!--Preferences-->
+            <!--</div>-->
             <div class="content filter-modal-content">
-                <button class="ui tiny button tag_button" v-for="tag in all_tags" v-bind:class="{ 'teal': tag.selected}" @click="update_tag(tag.id, tag.selected)">
+
+                <h3 class="ui header">
+                    Pick some tags you're interested in
+                    <div class="sub header">We will use them to customize the dialogues based on your interest</div>
+
+                </h3>
+
+
+                <button class="ui tiny button tag_button" v-for="tag in all_tags" v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}" @click="update_tag(tag.id, tag.selected)">
                     {{ tag.name }}
                 </button>
-                <div class="ui hidden divider"></div>
-                <div class="ui hidden divider"></div>
-                <div class="ui hidden divider"></div>
-                <vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>
+                <!--<div class="ui hidden divider"></div>-->
+                <!--<div class="ui hidden divider"></div>-->
+                <!--<div class="ui hidden divider"></div>-->
+                <!--<h3 class="ui header">-->
+                    <!--Set min and max movie year-->
+                <!--</h3>-->
+                <!--<vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>-->
             </div>
+
+            <div class="actions">
+                <div class="ui deny basic button">Close</div>
+            </div>
+
         </div>
 
         <div class="something-semantic">
@@ -240,19 +254,19 @@
                 this.loading_quote = true;
                 let url = this.base_url + '/api/get-year-range/';
                 this.$http.get(url).then(response => {
-                    this.sliderValue.min = response.data.min_year;
-                    this.sliderValue.max = response.data.max_year;
-                    let min_year_filter = this.$localStorage.get('filmy_quotes_user_added_min_year');
-                    let max_year_filter = this.$localStorage.get('filmy_quotes_user_added_max_year');
-                    if (min_year_filter === 0) {
-                        min_year_filter = response.data.min_year;
-                        this.$localStorage.set('filmy_quotes_user_added_min_year', min_year_filter);
-                    }
-                    if (max_year_filter === 0) {
-                        max_year_filter = response.data.max_year;
-                    }
-                    this.sliderValue.value = [min_year_filter, max_year_filter];
-                    this.get_quote();
+                        this.sliderValue.min = response.data.min_year;
+                        this.sliderValue.max = response.data.max_year;
+                        let min_year_filter = this.$localStorage.get('filmy_quotes_user_added_min_year');
+                        let max_year_filter = this.$localStorage.get('filmy_quotes_user_added_max_year');
+                        if (min_year_filter === 0) {
+                            min_year_filter = response.data.min_year;
+                            this.$localStorage.set('filmy_quotes_user_added_min_year', min_year_filter);
+                        }
+                        if (max_year_filter === 0) {
+                            max_year_filter = response.data.max_year;
+                        }
+                        this.sliderValue.value = [min_year_filter, max_year_filter];
+                      this.get_quote();
                 }, response => {
                 });
             },
@@ -267,7 +281,16 @@
             },
 
             open_filter_modal() {
-                $('.filter_modal').modal('show');
+
+                window.setTimeout(() => {
+                    $('.filter_modal')
+                        .modal({
+                            observeChanges: true
+                        })
+                        .modal('show');
+                }, 30)
+
+
             },
 
             check_reacted_mood(dialogue_id, mood) {
@@ -509,7 +532,9 @@
                         var link = document.createElement('a');
                         link.download = 'filmy-quote-' + vm.filmyQuotes.dialogue.id + '.jpeg';
                         link.href = dataUrl;
-                        link.click();
+                        console.log(link.download)
+//                        console.log(link.href)
+//                        link.click();
                     });
             }
         },
@@ -555,6 +580,11 @@
         padding-top: 0;
         margin-top: 0;
         font-style: italic;
+    }
+
+    .sub.header{
+        margin-top: 7px !important;
+        margin-bottom: 10px !important;
     }
     @import './assets/css/semantic.min.css';
     @import './assets/css/animate.css';
