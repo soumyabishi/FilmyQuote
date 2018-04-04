@@ -87,7 +87,7 @@
             height: 23px;
             background: url(../tab/assets/img/tick.svg) no-repeat;
             left: 0;
-            top:2
+            top:2px;
             /* bottom: 5px; */
             position: absolute;
             display: inline-block;

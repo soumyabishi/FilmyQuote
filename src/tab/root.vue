@@ -2,7 +2,7 @@
     <div class="quote-wrapper" id="quote_wrapper">
 
 
-        <a href="javascript:void(0)" class="logo-container" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()">
+        <a class="logo-container" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()">
             <img alt="FilmyQuote" src="./assets/img/logo.svg">
         </a>
 
@@ -132,7 +132,7 @@
                     </section>
 
 
-                    <a href="javascript:void(0)" id="refresh" value="Refresh" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()" v-if="!loading_quote">
+                    <a id="refresh" value="Refresh" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()" v-if="!loading_quote">
                         <svg class="icon"   version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      width="35px" height="35px" viewBox="0 0 322.447 322.447" style="enable-background:new 0 0 322.447 322.447;"
      xml:space="preserve">
@@ -249,6 +249,7 @@
             },
 
             fetch_year_range() {
+                this.loading_quote = true;
                 let url = this.base_url + '/api/get-year-range/';
                 this.$http.get(url).then(response => {
                     this.sliderValue.min = response.data.min_year;
@@ -373,8 +374,7 @@
             set_fontsize(dialogue_text) {
 
                 var numWords = dialogue_text.split(" ").length;
-                console.log(numWords);
-
+//                console.log(numWords);
                 this.font_isSmall = false;
                 this.font_isMedium = false;
                 this.font_isLarge = false;
@@ -557,6 +557,9 @@
 
     body{
         background-color: #3F4658;
+    }
+    a{
+        cursor: pointer;
     }
     @import './assets/css/semantic.min.css';
     @import './assets/css/animate.css';

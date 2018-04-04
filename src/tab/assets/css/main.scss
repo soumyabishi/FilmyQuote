@@ -14,8 +14,11 @@ header{
 
 a.logo-container{
   position: absolute;
-  left: 40px;
-  top: 40px;
+  left: 30px;
+  top: 30px;
+  img{
+    width: 135px;
+  }
 }
 
 a.refine-dialogues-button{
@@ -233,28 +236,28 @@ p.made-by{
 p.overlay-text{
   position: fixed;
   font-weight: 800;
-  font-size: 24em;
+  font-size: 22em;
   z-index: -9999;
   text-align: center;
   color: #353b4a75;
-  top: -210px;
-  left: -269px;
+  top: -197px;
+  left: -349px;
 }
 
 .quote-details{
   position: fixed;
-  bottom:40px;
-  left: 40px;
+  bottom: 30px;
+  left: 30px;
   ul{
     margin: 0;
     padding: 0;
     li{
+      font-size: 14px;
       display: inline-block;
       color: #fff;
       position: relative;
       padding-left: 28px;
       margin-right: 30px;
-
       span.year{
         opacity: 0.5;
       }
@@ -262,7 +265,7 @@ p.overlay-text{
         content: "";
         width: 18px;
         height: 18px;
-        top: 1px;
+        top: 3px;
         left: 0;
         position: absolute;
         display: inline-block;
