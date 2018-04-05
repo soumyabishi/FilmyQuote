@@ -90,12 +90,11 @@
                                     <ul class="reactions">
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions">
                                             <span class="reaction-emo">
-                                                <emoji set="apple" emoji="heart_eyes" :size="25" native
-                                                       v-if="emotion.mood == 'heart_eyes'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')"></emoji>
-                                                <emoji set="apple" emoji="joy" :size="25" native v-if="emotion.mood == 'joy'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')"></emoji>
-                                                <emoji set="apple" emoji="flushed" :size="25" native v-if="emotion.mood == 'flushed'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')"></emoji>
-                                                <emoji set="apple" emoji="pensive" :size="25" native v-if="emotion.mood == 'pensive'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')"></emoji>
-                                                <emoji set="apple" emoji="rage" :size="25" native v-if="emotion.mood == 'rage'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')"></emoji>
+                                                <emoji set="apple" emoji="heart_eyes" :size="25" native v-bind:class="{'selected': check_reaction_added_for_mood('heart_eyes')}" v-if="emotion.mood == 'heart_eyes'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')"></emoji>
+                                                <emoji set="apple" emoji="joy" :size="25" native v-bind:class="{'selected': check_reaction_added_for_mood('joy')}"v-if="emotion.mood == 'joy'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')"></emoji>
+                                                <emoji set="apple" emoji="flushed" :size="25" native v-bind:class="{'selected': check_reaction_added_for_mood('flushed')}" v-if="emotion.mood == 'flushed'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')"></emoji>
+                                                <emoji set="apple" emoji="pensive" :size="25" native v-bind:class="{'selected': check_reaction_added_for_mood('pensive')}" v-if="emotion.mood == 'pensive'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')"></emoji>
+                                                <emoji set="apple" emoji="rage" :size="25" native v-bind:class="{'selected': check_reaction_added_for_mood('rage')}" v-if="emotion.mood == 'rage'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')"></emoji>
                                             </span>
                                             {{emotion.count}}
                                         </li>
@@ -105,24 +104,19 @@
                                     <div class="ui flowing popup top right transition hidden" v-if="reaction_not_added">
                                         <ul class="emojis-wrapper">
                                             <li class="emo">
-                                                <emoji set="apple" emoji="heart_eyes" :size="35" native
-                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'heart_eyes')"></emoji>
+                                                <emoji set="apple" emoji="heart_eyes" :size="35" native v-on:click="add_reaction(filmyQuotes.dialogue.id,'heart_eyes')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="joy" :size="35" native
-                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'joy')"></emoji>
+                                                <emoji set="apple" emoji="joy" :size="35" native v-on:click="add_reaction(filmyQuotes.dialogue.id,'joy')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="flushed" :size="35" native
-                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'flushed')"></emoji>
+                                                <emoji set="apple" emoji="flushed" :size="35" native v-on:click="add_reaction(filmyQuotes.dialogue.id,'flushed')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="pensive" :size="35" native
-                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'pensive')"></emoji>
+                                                <emoji set="apple" emoji="pensive" :size="35" native v-on:click="add_reaction(filmyQuotes.dialogue.id,'pensive')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="rage" :size="35" native
-                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'rage')"></emoji>
+                                                <emoji set="apple" emoji="rage" :size="35" native v-on:click="add_reaction(filmyQuotes.dialogue.id,'rage')"></emoji>
                                             </li>
                                         </ul>
                                     </div>
@@ -226,6 +220,7 @@
                 actor_image_url_full: '',
                 actor_image_url_thumb: '',
                 reaction_not_added: true,
+                reaction_added: '',
                 adding_reaction: false,
                 font_isSmall: false,
                 font_isMedium: false,
@@ -296,13 +291,21 @@
             check_reacted_mood(dialogue_id, mood) {
                 let all_reacted_moods = this.$localStorage.get('filmy_quotes_user_added_moods');
                 return all_reacted_moods.dialogue_id === mood;
+            },
 
+            check_reaction_added_for_mood(mood){
+                return (this.reaction_added == mood && this.reaction_not_added == false);
             },
 
             check_reacted_dialogue(dialogue_id) {
                 let all_reacted_dialogues = this.$localStorage.get('filmy_quotes_user_added_dialogues');
                 // console.log(all_reacted_dialogues);
-                return all_reacted_dialogues.indexOf(dialogue_id) > -1;
+                let reacted = all_reacted_dialogues.indexOf(dialogue_id) > -1;
+                if (reacted){
+                    let all_reacted_moods = this.$localStorage.get('filmy_quotes_user_added_moods');
+                    this.reaction_added = all_reacted_moods.dialogue_id;
+                }
+                return reacted;
             },
 
             check_filtered_tags() {
@@ -484,8 +487,10 @@
                     }
                     this.filmyQuotes.dialogue.emotions = emotions;
                     this.reaction_not_added = false;
+                    this.reaction_added = mood;
                     this.add_to_reacted_dialogues(id, mood);
                     this.adding_reaction = false;
+                    this.$forceUpdate();
                 }, response => {
                     this.adding_reaction = false;
                 });
@@ -517,8 +522,10 @@
                         }
                         this.filmyQuotes.dialogue.emotions = emotions;
                         this.reaction_not_added = true;
+                        this.reaction_added = '';
                         this.remove_from_reacted_dialogues(id);
                         this.enable_emoji_popup();
+                        this.$forceUpdate();
                     }, response => {
                     });
                 }
