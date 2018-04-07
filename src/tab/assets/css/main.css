@@ -94,7 +94,8 @@ section.quote {
           position: relative;
           padding-left: 30px;
           font-size: 12px;
-          margin-right: 20px; }
+          margin-right: 20px;
+          line-height: 2.2; }
           section.quote .content .emoji ul.reactions li span.reaction-emo {
             position: absolute;
             left: 0; }

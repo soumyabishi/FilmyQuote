@@ -33,13 +33,13 @@
                 <button class="ui tiny button tag_button" v-for="tag in all_tags" v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}" @click="update_tag(tag.id, tag.selected)">
                     {{ tag.name }}
                 </button>
-                <!--<div class="ui hidden divider"></div>-->
-                <!--<div class="ui hidden divider"></div>-->
-                <!--<div class="ui hidden divider"></div>-->
-                <!--<h3 class="ui header">-->
-                    <!--Set min and max movie year-->
-                <!--</h3>-->
-                <!--<vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>-->
+                <div class="ui hidden divider"></div>
+                <div class="ui hidden divider"></div>
+                <div class="ui hidden divider"></div>
+                <h3 class="ui header">
+                    Set min and max movie year
+                </h3>
+                <vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>
             </div>
 
             <div class="actions">
@@ -68,8 +68,6 @@
                             </div>
                         </div>
                     </section>
-
-
                     <section class="quote" v-if="!loading_quote">
                         <div class="quote-wrapper">
                             <div class="poster">
@@ -90,11 +88,11 @@
                                     <ul class="reactions">
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions">
                                             <span class="reaction-emo">
-                                                <emoji set="apple" emoji="heart_eyes" :size="25" native v-bind:class="{'selected': check_reaction_added_for_mood('heart_eyes')}" v-if="emotion.mood == 'heart_eyes'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')"></emoji>
-                                                <emoji set="apple" emoji="joy" :size="25" native v-bind:class="{'selected': check_reaction_added_for_mood('joy')}"v-if="emotion.mood == 'joy'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')"></emoji>
-                                                <emoji set="apple" emoji="flushed" :size="25" native v-bind:class="{'selected': check_reaction_added_for_mood('flushed')}" v-if="emotion.mood == 'flushed'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')"></emoji>
-                                                <emoji set="apple" emoji="pensive" :size="25" native v-bind:class="{'selected': check_reaction_added_for_mood('pensive')}" v-if="emotion.mood == 'pensive'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')"></emoji>
-                                                <emoji set="apple" emoji="rage" :size="25" native v-bind:class="{'selected': check_reaction_added_for_mood('rage')}" v-if="emotion.mood == 'rage'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')"></emoji>
+                                                <emoji set="apple" emoji="heart_eyes" :size="25" v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('heart_eyes')}" v-if="emotion.mood == 'heart_eyes'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')"></emoji>
+                                                <emoji set="apple" emoji="joy" :size="25" v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('joy')}"v-if="emotion.mood == 'joy'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')"></emoji>
+                                                <emoji set="apple" emoji="flushed" :size="25"  v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('flushed')}" v-if="emotion.mood == 'flushed'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')"></emoji>
+                                                <emoji set="apple" emoji="pensive" :size="25"  v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('pensive')}" v-if="emotion.mood == 'pensive'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')"></emoji>
+                                                <emoji set="apple" emoji="rage" :size="25"  v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('rage')}" v-if="emotion.mood == 'rage'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')"></emoji>
                                             </span>
                                             {{emotion.count}}
                                         </li>
@@ -104,19 +102,19 @@
                                     <div class="ui flowing popup top right transition hidden" v-if="reaction_not_added">
                                         <ul class="emojis-wrapper">
                                             <li class="emo">
-                                                <emoji set="apple" emoji="heart_eyes" :size="35" native v-on:click="add_reaction(filmyQuotes.dialogue.id,'heart_eyes')"></emoji>
+                                                <emoji set="apple" emoji="heart_eyes" :size="35"  v-on:click="add_reaction(filmyQuotes.dialogue.id,'heart_eyes')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="joy" :size="35" native v-on:click="add_reaction(filmyQuotes.dialogue.id,'joy')"></emoji>
+                                                <emoji set="apple" emoji="joy" :size="35"  v-on:click="add_reaction(filmyQuotes.dialogue.id,'joy')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="flushed" :size="35" native v-on:click="add_reaction(filmyQuotes.dialogue.id,'flushed')"></emoji>
+                                                <emoji set="apple" emoji="flushed" :size="35"  v-on:click="add_reaction(filmyQuotes.dialogue.id,'flushed')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="pensive" :size="35" native v-on:click="add_reaction(filmyQuotes.dialogue.id,'pensive')"></emoji>
+                                                <emoji set="apple" emoji="pensive" :size="35"  v-on:click="add_reaction(filmyQuotes.dialogue.id,'pensive')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="rage" :size="35" native v-on:click="add_reaction(filmyQuotes.dialogue.id,'rage')"></emoji>
+                                                <emoji set="apple" emoji="rage" :size="35"  v-on:click="add_reaction(filmyQuotes.dialogue.id,'rage')"></emoji>
                                             </li>
                                         </ul>
                                     </div>
@@ -126,8 +124,6 @@
                             </div>
                         </div>
                     </section>
-
-
                     <a id="refresh" value="Refresh" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()" v-if="!loading_quote">
                         <svg class="icon"   version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      width="35px" height="35px" viewBox="0 0 322.447 322.447" style="enable-background:new 0 0 322.447 322.447;"
@@ -142,8 +138,6 @@
         </g>
        </svg>
                     </a>
-
-
                     <div class="ui popup">
                         Refresh to get a new one!
                     </div>
@@ -582,6 +576,21 @@
         cursor: pointer;
     }
 
+    .emoji-mart-emoji.selected{
+            &:before{
+                z-index: 0;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #f4f4f4;
+                border-radius: 100%;
+                opacity: 0;
+            }
+    }
+
     h1.quote-text{
         font-family: freight-sans-pro, sans-serif;
         padding-top: 0;
@@ -592,6 +601,18 @@
     .sub.header{
         margin-top: 7px !important;
         margin-bottom: 10px !important;
+    }
+
+    @media only screen and (max-width: 64.063em) {
+        section.quote{
+            margin-top: 90px;
+        }
+        section.quote .content{
+            padding-left: 0;
+        }
+        section.quote .poster{
+            position: relative;
+        }
     }
     @import './assets/css/semantic.min.css';
     @import './assets/css/animate.css';

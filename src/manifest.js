@@ -21,7 +21,7 @@ module.exports = {
     'identity.email'
   ],
   browser_action: {
-    default_title: 'FimlyQuote',
+    default_title: 'New tab - FilmyQuote',
     default_popup: 'pages/popup.html'
   },
   background: {
