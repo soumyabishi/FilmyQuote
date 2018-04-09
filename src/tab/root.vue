@@ -1,6 +1,8 @@
 <template>
     <div class="quote-wrapper" id="quote_wrapper">
 
+        <p>Spumya</p>
+
         <a class="logo-container" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()">
             <img alt="FilmyQuote" src="./assets/img/logo.svg">
         </a>
