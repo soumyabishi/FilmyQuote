@@ -18,6 +18,7 @@
     "vue-cookies": "^1.5.6",
     "vue-localstorage": "^0.6.2",
     "vue-meta": "^1.2.0",
+    "vue-moment": "^3.2.0",
     "vue-pouch": "^0.0.22",
     "vue-progressive-image": "^2.4.4",
     "vue-range-slider": "^0.6.0",

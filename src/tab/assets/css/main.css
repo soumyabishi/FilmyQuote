@@ -1,5 +1,5 @@
 body.dialogues {
-  background-color: #3F4658;
+  background-color: #103656;
   font-family: 'Inter UI', sans-serif; }
 
 .quote-wrapper, #app {
@@ -17,8 +17,8 @@ a.logo-container {
 
 .refine-dialogues-button {
   position: absolute;
+  bottom: 30px;
   right: 30px;
-  top: 30px;
   cursor: pointer;
   width: 20px;
   opacity: 0.5; }
@@ -28,7 +28,7 @@ a.logo-container {
 .share-dialogue-button {
   position: absolute;
   right: 77px;
-  top: 30px;
+  bottom: 30px;
   opacity: 0.5;
   cursor: pointer;
   width: 16px; }
@@ -44,26 +44,27 @@ section.quote {
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
-  margin-top: -100px; }
+  margin-top: -50px; }
   section.quote .poster {
     position: absolute;
-    height: 250px;
-    width: 250px;
+    height: 150px;
+    width: 150px;
     box-shadow: 0 15px 53px rgba(0, 0, 0, 0.26);
     border-radius: 4px;
-    background-color: #3F4658; }
+    background-color: #192f42; }
     section.quote .poster img {
       width: 100%;
       border-radius: 4px; }
     section.quote .poster .progressive-image-wrapper {
       border-radius: 50%;
-      padding-bottom: 250px !important; }
+      padding-bottom: 150px !important; }
   section.quote .content {
     color: #fff;
-    padding-left: 300px; }
+    padding-left: 190px; }
     section.quote .content .quote_icon {
       opacity: 0.1;
-      margin-bottom: 10px; }
+      margin-bottom: 3px;
+      width: 34px; }
     section.quote .content h1 {
       font-weight: 300;
       font-size: 32px; }
@@ -196,12 +197,12 @@ p.made-by {
 p.overlay-text {
   position: fixed;
   font-weight: 800;
-  font-size: 22em;
+  font-size: 18em;
   z-index: -9999;
   text-align: center;
-  color: #353b4a75;
-  top: -197px;
-  left: -349px; }
+  color: #162b3e;
+  top: -190px;
+  left: -109px; }
 
 .quote-details {
   position: fixed;

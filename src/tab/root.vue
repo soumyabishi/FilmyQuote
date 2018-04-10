@@ -1,14 +1,28 @@
 <template>
     <div class="quote-wrapper" id="quote_wrapper">
 
+        <!--<span>{{ date | moment }}</span>-->
+        <!--<span>{{ time | moment }}</span>-->
+
+        <div class="clock">
+            <p>{{moment().format('HH:mm a')}}
+                <span>{{moment().format('ddd, MMMM D')}}</span>
+            </p>
+        </div>
+
         <a class="logo-container" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()">
             <img alt="FilmyQuote" src="./assets/img/logo.svg">
         </a>
 
-        <p class="made-by ibm-type-mono">
-            Made with love by <a href="https://github.com/soumyabishi" target="_blank">Soumya</a> & <a href="https://github.com/shiv-param" target="_blank">Shiv</a>.
-        </p>
 
+        <!--<p class="made-by ibm-type-mono">-->
+            <!--Made with love by <a href="https://github.com/soumyabishi" target="_blank">Soumya</a> & <a href="https://github.com/shiv-param" target="_blank">Shiv</a>.-->
+        <!--</p>-->
+
+
+        <!--<img src="./assets/img/lines.svg" class="lines">-->
+        <!--<img src="./assets/img/lines_1.svg" class="lines_1">-->
+        <!--<img src="./assets/img/circle.svg" class="circle">-->
 
         <p class="overlay-text">FilmyQuote</p>
 
@@ -71,6 +85,7 @@
                     <section class="quote" v-if="!loading_quote">
                         <div class="quote-wrapper">
                             <div class="poster">
+
                                 <progressive-img
                                         :src="actor_image_url_full" :blur="30"
                                         :placeholder="actor_image_url_thumb"
@@ -124,23 +139,23 @@
                             </div>
                         </div>
                     </section>
-                    <a id="refresh" value="Refresh" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()" v-if="!loading_quote">
-                        <svg class="icon"   version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-     width="35px" height="35px" viewBox="0 0 322.447 322.447" style="enable-background:new 0 0 322.447 322.447;"
-     xml:space="preserve">
-        <g>
-          <path  d="M321.832,230.327c-2.133-6.565-9.184-10.154-15.75-8.025l-16.254,5.281C299.785,206.991,305,184.347,305,161.224
-            c0-84.089-68.41-152.5-152.5-152.5C68.411,8.724,0,77.135,0,161.224s68.411,152.5,152.5,152.5c6.903,0,12.5-5.597,12.5-12.5
-            c0-6.902-5.597-12.5-12.5-12.5c-70.304,0-127.5-57.195-127.5-127.5c0-70.304,57.196-127.5,127.5-127.5
-            c70.305,0,127.5,57.196,127.5,127.5c0,19.372-4.371,38.337-12.723,55.568l-5.553-17.096c-2.133-6.564-9.186-10.156-15.75-8.025
-            c-6.566,2.134-10.16,9.186-8.027,15.751l14.74,45.368c1.715,5.283,6.615,8.642,11.885,8.642c1.279,0,2.582-0.198,3.865-0.614
-            l45.369-14.738C320.371,243.946,323.965,236.895,321.832,230.327z"/>
-        </g>
-       </svg>
-                    </a>
-                    <div class="ui popup">
-                        Refresh to get a new one!
-                    </div>
+                    <!--<a id="refresh" value="Refresh" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()" v-if="!loading_quote">-->
+                        <!--<svg class="icon"   version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"-->
+     <!--width="35px" height="35px" viewBox="0 0 322.447 322.447" style="enable-background:new 0 0 322.447 322.447;"-->
+     <!--xml:space="preserve">-->
+        <!--<g>-->
+          <!--<path  d="M321.832,230.327c-2.133-6.565-9.184-10.154-15.75-8.025l-16.254,5.281C299.785,206.991,305,184.347,305,161.224-->
+            <!--c0-84.089-68.41-152.5-152.5-152.5C68.411,8.724,0,77.135,0,161.224s68.411,152.5,152.5,152.5c6.903,0,12.5-5.597,12.5-12.5-->
+            <!--c0-6.902-5.597-12.5-12.5-12.5c-70.304,0-127.5-57.195-127.5-127.5c0-70.304,57.196-127.5,127.5-127.5-->
+            <!--c70.305,0,127.5,57.196,127.5,127.5c0,19.372-4.371,38.337-12.723,55.568l-5.553-17.096c-2.133-6.564-9.186-10.156-15.75-8.025-->
+            <!--c-6.566,2.134-10.16,9.186-8.027,15.751l14.74,45.368c1.715,5.283,6.615,8.642,11.885,8.642c1.279,0,2.582-0.198,3.865-0.614-->
+            <!--l45.369-14.738C320.371,243.946,323.965,236.895,321.832,230.327z"/>-->
+        <!--</g>-->
+       <!--</svg>-->
+                    <!--</a>-->
+                    <!--<div class="ui popup">-->
+                        <!--Refresh to get a new one!-->
+                    <!--</div>-->
 
                     <!--<picker @click="addEmoji"></picker>-->
 
@@ -148,26 +163,27 @@
             </div>
         </div>
 
-        <div class="quote-details" v-if="!loading_quote">
+        <!--<div class="quote-details" v-if="!loading_quote">-->
 
-            <ul>
-                <li class="movie-name">{{filmyQuotes.dialogue.movie_name}} <span
-                        class="year">({{filmyQuotes.dialogue.movie_year}})</span>
-                </li>
-                <li class="tags">
-                    <span v-for="(tag,index) in filmyQuotes.dialogue.tags">
-                        {{ tag }}<span v-if="index<filmyQuotes.dialogue.tags.length-1">, </span>
-                     </span>
-                </li>
-            </ul>
+            <!--<ul>-->
+                <!--<li class="movie-name">{{filmyQuotes.dialogue.movie_name}} <span-->
+                        <!--class="year">({{filmyQuotes.dialogue.movie_year}})</span>-->
+                <!--</li>-->
+                <!--<li class="tags">-->
+                    <!--<span v-for="(tag,index) in filmyQuotes.dialogue.tags">-->
+                        <!--{{ tag }}<span v-if="index<filmyQuotes.dialogue.tags.length-1">, </span>-->
+                     <!--</span>-->
+                <!--</li>-->
+            <!--</ul>-->
 
-        </div>
+        <!--</div>-->
 
 
     </div>
 
 </template>
 <script>
+    import moment from 'moment'
     import {Picker} from 'emoji-mart-vue';
     import {Emoji} from 'emoji-mart-vue';
     import placeHolderUrl from './assets/img/placeholder.svg';
@@ -226,7 +242,7 @@
                     min: 0
                 },
                 first_time_user: false,
-                base_url: 'http://18.219.186.38'
+                base_url: 'http://18.219.186.38',
             }
         },
 
@@ -537,28 +553,30 @@
 //                        console.log(link.href)
 //                        link.click();
                     });
-            }
+            },
+
+            moment: function () {
+                return moment();
+            },
+
         },
 
 
-        updated() {
-            setTimeout(function () {
-//        $('#refresh')
-//          .popup({
-//            position: 'top center',
-//            delay: {
-//              show: 30,
-//              hide: 30
-//            }
-//          })
-//        ;
-            }, 15);
-        },
 
         mounted() {
             this.check_first_time_user();
             this.fetch_tags();
             this.fetch_year_range();
+        },
+
+        filters: {
+//            moment: function (date) {
+//                return moment(date).format('ddd, MMMM D');
+//            },
+
+//            moment: function (time) {
+//                return moment(time).format('H : m');
+//            }
         }
     }
 
@@ -570,7 +588,7 @@
 <style lang="scss">
 
     body{
-        background-color: #3F4658;
+        background-color: #192f42;
     }
     a{
         cursor: pointer;
@@ -601,6 +619,44 @@
     .sub.header{
         margin-top: 7px !important;
         margin-bottom: 10px !important;
+    }
+
+    .lines{
+        position: absolute;
+        bottom: 10%;
+        right: -14px;
+        width: 102px;
+    }
+
+    .lines_1{
+        position: absolute;
+        top: 30%;
+        left: -32px;
+        width: 54px;
+    }
+
+    .circle{
+        position: absolute;
+        left: 70px;
+        width: 50px !important;
+        top: 55%;
+    }
+
+    .clock{
+        color: #fff;
+        top: 30px;
+        position: absolute;
+        right: 30px;
+        text-align: right;
+        p{
+            font-size: 23px;
+            line-height: 1.5;
+            span{
+                display: block;
+                font-size: 12px;
+                opacity: 0.5;
+            }
+        }
     }
 
     @media only screen and (max-width: 64.063em) {

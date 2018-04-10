@@ -8,6 +8,8 @@ Vue.use(VueLocalStorage);
 
 import'./assets/js/jquery-3.1.1.min'
 import'./assets/js/semantic.min.js'
+Vue.use(require('vue-moment'));
+
 
 import VueProgressiveImage from 'vue-progressive-image'
 
