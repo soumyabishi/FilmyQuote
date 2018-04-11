@@ -51,6 +51,14 @@ new Vue({
         filmy_quotes_user_first_time: {
             type: Boolean,
             default: false
+        },
+        filmy_quotes_search_movie_name: {
+            type: String,
+            default: '0'
+        },
+        filmy_quotes_search_movie_year: {
+            type: String,
+            default: '0'
         }
     }
 })
