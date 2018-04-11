@@ -15,6 +15,8 @@
         </a>
 
 
+        <!--<p class="spacebar">Hit <span>SPACEBAR</span> to shuffle.</p>-->
+
         <!--<p class="made-by ibm-type-mono">-->
             <!--Made with love by <a href="https://github.com/soumyabishi" target="_blank">Soumya</a> & <a href="https://github.com/shiv-param" target="_blank">Shiv</a>.-->
         <!--</p>-->
