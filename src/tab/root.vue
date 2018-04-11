@@ -245,12 +245,33 @@
                 },
                 first_time_user: false,
                 base_url: 'http://18.219.186.38',
+                search_movie_name: '0',
+                search_movie_year: '0',
+                movie_searched: false,
             }
         },
 
         computed: {},
 
         methods: {
+
+            check_search_movie_details(){
+                this.search_movie_name = this.$localStorage.get('filmy_quotes_search_movie_name');
+                this.search_movie_year = this.$localStorage.get('filmy_quotes_search_movie_year');
+                if(this.search_movie_name != '0') this.movie_searched = true;
+            },
+
+            set_search_movie_details(movie_name, movie_year){
+                this.$localStorage.set('filmy_quotes_search_movie_name', movie_name);
+                this.$localStorage.set('filmy_quotes_search_movie_year', movie_year);
+                this.movie_searched = true;
+            },
+
+            clear_search_movie_details(){
+                this.$localStorage.set('filmy_quotes_search_movie_name', '0');
+                this.$localStorage.set('filmy_quotes_search_movie_year', '0');
+                this.movie_searched = false;
+            },
 
             check_first_time_user() {
                 this.first_time_user = this.$localStorage.get('filmy_quotes_user_first_time');
@@ -448,6 +469,7 @@
                     url += '0';
                 }
                 url += '&year_min=' + this.sliderValue.value[0] + '&year_max=' + this.sliderValue.value[1];
+                url += '&movie_name=' + this.search_movie_name + '&movie_year=' + this.search_movie_year;
                 this.$http.get(url).then(response => {
                     this.loading_quote = false;
 
@@ -566,6 +588,7 @@
 
 
         mounted() {
+            this.check_search_movie_details();
             this.check_first_time_user();
             this.fetch_tags();
             this.fetch_year_range();
