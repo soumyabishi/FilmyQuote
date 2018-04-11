@@ -13,15 +13,15 @@
         <a class="logo-container" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()">
             <img alt="FilmyQuote" src="./assets/img/logo.svg">
         </a>
-        <div class="ui fluid multiple search selection dropdown" id="search_movie_dropdown" v-if="!movie_searched">
-            <input type="hidden" name="country" value="kp">
-            <i class="dropdown icon"></i>
-            <input class="search">
-            <div class="default text">Search movies...</div>
-        </div>
-        <button v-if="movie_searched" @click="clear_search_movie_details()">clear</button>
 
 
+        <!--<div class="ui fluid multiple search selection dropdown" id="search_movie_dropdown" v-if="!movie_searched">-->
+            <!--<input type="hidden" name="country" value="kp">-->
+            <!--<i class="dropdown icon"></i>-->
+            <!--<input class="search">-->
+            <!--<div class="default text">Search movies...</div>-->
+        <!--</div>-->
+        <!--<button v-if="movie_searched" @click="clear_search_movie_details()">clear</button>-->
 
 
 
@@ -49,6 +49,7 @@
 
                 </h3>
 
+
                 <vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"
                   tooltip='hover' :dot-size="6" :dot-width="12" :dot-height="12" :height="4"
                             :processStyle='[{"backgroundColor": "#00b5ad"}]'
@@ -56,6 +57,9 @@
                  >
 
                 </vue_slider>
+
+
+
 
 
             </div>
@@ -68,7 +72,7 @@
         </modal>
 
 
-        <!--<p class="spacebar">Hit <span>SPACEBAR</span> to shuffle.</p>-->
+        <p class="spacebar">Hit <span>SPACEBAR</span> to shuffle.</p>
 
         <!--<p class="made-by ibm-type-mono">-->
             <!--Made with love by <a href="https://github.com/soumyabishi" target="_blank">Soumya</a> & <a href="https://github.com/shiv-param" target="_blank">Shiv</a>.-->
@@ -218,20 +222,20 @@
             </div>
         </div>
 
-        <!--<div class="quote-details" v-if="!loading_quote">-->
+        <div class="quote-details" v-if="!loading_quote">
 
-            <!--<ul>-->
+            <ul>
                 <!--<li class="movie-name">{{filmyQuotes.dialogue.movie_name}} <span-->
                         <!--class="year">({{filmyQuotes.dialogue.movie_year}})</span>-->
                 <!--</li>-->
-                <!--<li class="tags">-->
-                    <!--<span v-for="(tag,index) in filmyQuotes.dialogue.tags">-->
-                        <!--{{ tag }}<span v-if="index<filmyQuotes.dialogue.tags.length-1">, </span>-->
-                     <!--</span>-->
-                <!--</li>-->
-            <!--</ul>-->
+                <li class="tags">
+                    <span v-for="(tag,index) in filmyQuotes.dialogue.tags">
+                        {{ tag }}<span v-if="index<filmyQuotes.dialogue.tags.length-1">, </span>
+                     </span>
+                </li>
+            </ul>
 
-        <!--</div>-->
+        </div>
 
 
     </div>
@@ -752,6 +756,16 @@
                 opacity: 0.5;
             }
         }
+    }
+
+    .spacebar{
+        color: #fff;
+        font-size: 12px;
+        position: absolute;
+        left: 50%;
+        margin-left: -70px;
+        bottom: 20px;
+        opacity: 0.6;
     }
 
     @media only screen and (max-width: 64.063em) {
