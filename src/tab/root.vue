@@ -31,6 +31,7 @@
                height="auto" :scrollable="true" transition="fade">
 
             <div class="dialog-content filter-modal-content">
+
                 <h3 class="ui header">
                     Pick some tags you're interested in
                     <div class="sub header">We will use them to customize the dialogues based on your interest</div>

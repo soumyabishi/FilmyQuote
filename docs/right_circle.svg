@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="462" height="518" viewBox="0 0 462 518">
+  <defs>
+    <linearGradient id="right_circle-a" x1="105.925%" x2="11.177%" y1="-25.81%" y2="90.075%">
+      <stop offset="0%" stop-color="#30E6DD"/>
+      <stop offset="100%" stop-color="#2FC3E0"/>
+    </linearGradient>
+    <circle id="right_circle-c" cx="77.5" cy="467.5" r="23.5"/>
+    <filter id="right_circle-b" width="214.9%" height="214.9%" x="-57.4%" y="-31.9%" filterUnits="objectBoundingBox">
+      <feOffset dy="12" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feMorphology in="SourceAlpha" radius="10.5" result="shadowInner"/>
+      <feOffset dy="12" in="shadowInner" result="shadowInner"/>
+      <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="7"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0998358243 0"/>
+    </filter>
+    <circle id="right_circle-e" cx="157" cy="484" r="8"/>
+    <filter id="right_circle-d" width="437.5%" height="437.5%" x="-168.8%" y="-93.8%" filterUnits="objectBoundingBox">
+      <feOffset dy="12" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="7"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0998358243 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="231" cy="231" r="231" fill="url(#right_circle-a)"/>
+    <use fill="#000" filter="url(#right_circle-b)" xlink:href="#right_circle-c"/>
+    <circle cx="77.5" cy="467.5" r="18.25" stroke="#FFF" stroke-width="10.5"/>
+    <g>
+      <use fill="#000" filter="url(#right_circle-d)" xlink:href="#right_circle-e"/>
+      <use fill="#FFF" xlink:href="#right_circle-e"/>
+    </g>
+  </g>
+</svg>
