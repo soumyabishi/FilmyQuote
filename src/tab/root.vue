@@ -13,6 +13,12 @@
         <a class="logo-container" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()">
             <img alt="FilmyQuote" src="./assets/img/logo.svg">
         </a>
+        <div class="ui fluid multiple search selection dropdown" id="search_movie_dropdown">
+            <input type="hidden" name="country" value="kp">
+            <i class="dropdown icon"></i>
+            <input class="search">
+            <div class="default text">Search movies...</div>
+        </div>
 
 
         <!--<p class="spacebar">Hit <span>SPACEBAR</span> to shuffle.</p>-->
@@ -264,12 +270,16 @@
             set_search_movie_details(movie_name, movie_year){
                 this.$localStorage.set('filmy_quotes_search_movie_name', movie_name);
                 this.$localStorage.set('filmy_quotes_search_movie_year', movie_year);
+                this.search_movie_name = movie_name;
+                this.search_movie_year = movie_year;
                 this.movie_searched = true;
             },
 
             clear_search_movie_details(){
                 this.$localStorage.set('filmy_quotes_search_movie_name', '0');
                 this.$localStorage.set('filmy_quotes_search_movie_year', '0');
+                this.search_movie_name = '0';
+                this.search_movie_year = '0';
                 this.movie_searched = false;
             },
 
@@ -592,6 +602,17 @@
             this.check_first_time_user();
             this.fetch_tags();
             this.fetch_year_range();
+            $('#search_movie_dropdown').dropdown({
+                apiSettings: {
+                    url: this.base_url + '/api/search-movies/?query={query}',
+                    onChange: function(value, text, $selectedItem) {
+                        let movie_details = value.split('|');
+                        let movie_name = movie_details[0];
+                        let movie_year = movie_details[1];
+                        this.set_search_movie_details(movie_name, movie_year);
+                    }
+                },
+            });
         },
 
         filters: {
