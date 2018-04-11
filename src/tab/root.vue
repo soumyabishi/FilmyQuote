@@ -196,27 +196,14 @@
                                 </div>
 
                             </div>
+
                         </div>
                     </section>
-                    <!--<a id="refresh" value="Refresh" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()" v-if="!loading_quote">-->
-                        <!--<svg class="icon"   version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"-->
-     <!--width="35px" height="35px" viewBox="0 0 322.447 322.447" style="enable-background:new 0 0 322.447 322.447;"-->
-     <!--xml:space="preserve">-->
-        <!--<g>-->
-          <!--<path  d="M321.832,230.327c-2.133-6.565-9.184-10.154-15.75-8.025l-16.254,5.281C299.785,206.991,305,184.347,305,161.224-->
-            <!--c0-84.089-68.41-152.5-152.5-152.5C68.411,8.724,0,77.135,0,161.224s68.411,152.5,152.5,152.5c6.903,0,12.5-5.597,12.5-12.5-->
-            <!--c0-6.902-5.597-12.5-12.5-12.5c-70.304,0-127.5-57.195-127.5-127.5c0-70.304,57.196-127.5,127.5-127.5-->
-            <!--c70.305,0,127.5,57.196,127.5,127.5c0,19.372-4.371,38.337-12.723,55.568l-5.553-17.096c-2.133-6.564-9.186-10.156-15.75-8.025-->
-            <!--c-6.566,2.134-10.16,9.186-8.027,15.751l14.74,45.368c1.715,5.283,6.615,8.642,11.885,8.642c1.279,0,2.582-0.198,3.865-0.614-->
-            <!--l45.369-14.738C320.371,243.946,323.965,236.895,321.832,230.327z"/>-->
-        <!--</g>-->
-       <!--</svg>-->
-                    <!--</a>-->
-                    <!--<div class="ui popup">-->
-                        <!--Refresh to get a new one!-->
-                    <!--</div>-->
 
-                    <!--<picker @click="addEmoji"></picker>-->
+                    <!--<section class="no-quote">-->
+                           <!--<p>Sorry, no dialogues to show! :(</p>-->
+                    <!--</section>-->
+
 
                 </div>
             </div>
@@ -685,107 +672,14 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-
-    body{
-        background-color: #192f42;
-    }
-    a{
-        cursor: pointer;
-    }
-
-    .emoji-mart-emoji.selected{
-            &:before{
-                z-index: 0;
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: #f4f4f4;
-                border-radius: 100%;
-                opacity: 0;
-            }
-    }
-
-    h1.quote-text{
-        font-family: freight-sans-pro, sans-serif;
-        padding-top: 0;
-        margin-top: 0;
-        font-style: italic;
-    }
-
-    .sub.header{
-        margin-top: 7px !important;
-        margin-bottom: 10px !important;
-    }
-
-    .lines{
-        position: absolute;
-        bottom: 10%;
-        right: -14px;
-        width: 102px;
-    }
-
-    .lines_1{
-        position: absolute;
-        top: 30%;
-        left: -32px;
-        width: 54px;
-    }
-
-    .circle{
-        position: absolute;
-        left: 70px;
-        width: 50px !important;
-        top: 55%;
-    }
-
-    .clock{
-        color: #fff;
-        top: 30px;
-        position: absolute;
-        right: 30px;
-        text-align: right;
-        p{
-            font-size: 23px;
-            line-height: 1.5;
-            span{
-                display: block;
-                font-size: 12px;
-                opacity: 0.5;
-            }
-        }
-    }
-
-    .spacebar{
-        color: #fff;
-        font-size: 12px;
-        position: absolute;
-        left: 50%;
-        margin-left: -70px;
-        bottom: 20px;
-        opacity: 0.6;
-    }
-
-    @media only screen and (max-width: 64.063em) {
-        section.quote{
-            margin-top: 90px;
-        }
-        section.quote .content{
-            padding-left: 0;
-        }
-        section.quote .poster{
-            position: relative;
-        }
-    }
     @import './assets/css/semantic.min.css';
+    @import './assets/css/fde6xbm.css';
     @import './assets/css/animate.css';
     @import '../../node_modules/inter-ui/inter-ui.css';
     @import '../../node_modules/@ibm/type/css/ibm-type.min.css';
     @import './assets/css/main.css';
     @import '../../node_modules/vue-range-slider/dist/vue-range-slider.css';
     @import '../../node_modules/vue-js-modal/dist/styles.css';
-    @import url("https://use.typekit.net/fde6xbm.css");
+    /*@import url("https://use.typekit.net/fde6xbm.css");*/
 
 </style>

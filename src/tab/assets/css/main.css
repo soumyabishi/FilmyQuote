@@ -1,7 +1,88 @@
-body.dialogues {
-  background-color: #103656;
-  font-family: 'Inter UI', sans-serif; }
+body {
+  background-color: #192f42; }
 
+a {
+  cursor: pointer; }
+
+.emoji-mart-emoji.selected:before {
+  z-index: 0;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f4f4f4;
+  border-radius: 100%;
+  opacity: 0; }
+
+h1.quote-text {
+  font-family: freight-sans-pro,sans-serif;
+  padding-top: 0;
+  margin-top: 0;
+  font-style: italic; }
+
+.sub.header {
+  margin-top: 7px !important;
+  margin-bottom: 10px !important; }
+
+.lines {
+  position: absolute;
+  bottom: 10%;
+  right: -14px;
+  width: 102px; }
+
+.lines_1 {
+  position: absolute;
+  top: 30%;
+  left: -32px;
+  width: 54px; }
+
+.circle {
+  position: absolute;
+  left: 70px;
+  width: 50px !important;
+  top: 55%; }
+
+.clock {
+  color: #fff;
+  top: 30px;
+  position: absolute;
+  right: 30px;
+  text-align: right; }
+  .clock p {
+    font-size: 23px;
+    line-height: 1.5; }
+    .clock p span {
+      display: block;
+      font-size: 12px;
+      opacity: 0.5; }
+
+section.no-quote p {
+  color: #fff;
+  text-align: center;
+  font-size: 33px;
+  font-weight: 200;
+  opacity: 0.5; }
+
+.spacebar {
+  color: #fff;
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  margin-left: -70px;
+  bottom: 20px;
+  opacity: 0.6; }
+
+@media only screen and (max-width: 64.063em) {
+  section.quote {
+    margin-top: 90px; }
+
+  section.quote .content {
+    padding-left: 0; }
+
+  section.quote .poster {
+    position: relative; } }
 .quote-wrapper, #app {
   height: 100%; }
 

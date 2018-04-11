@@ -34,12 +34,12 @@
   body{
       margin: 0;
       padding: 0;
+      width: 260px;
+      height: 200px;
+      padding: 20px;
   }
 
     .popup{
-        width: 260px;
-        height: 200px;
-        padding: 20px;
     }
 
     .logo{
@@ -47,7 +47,7 @@
     }
 
     .active{
-        background-color: #3F4658;
+        background-color: #192f42;
         margin: 20px -20px;
         padding: 20px;
         color: #fff;
