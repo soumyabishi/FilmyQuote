@@ -13,12 +13,13 @@
         <a class="logo-container" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()">
             <img alt="FilmyQuote" src="./assets/img/logo.svg">
         </a>
-        <div class="ui fluid multiple search selection dropdown" id="search_movie_dropdown">
+        <div class="ui fluid multiple search selection dropdown" id="search_movie_dropdown" v-if="!movie_searched">
             <input type="hidden" name="country" value="kp">
             <i class="dropdown icon"></i>
             <input class="search">
             <div class="default text">Search movies...</div>
         </div>
+        <button v-if="movie_searched" @click="clear_search_movie_details()">clear</button>
 
 
         <!--<p class="spacebar">Hit <span>SPACEBAR</span> to shuffle.</p>-->
@@ -35,7 +36,7 @@
         <p class="overlay-text">FilmyQuote</p>
 
 
-           <img src="./assets/img/settings.svg" class="refine-dialogues-button" @click="open_filter_modal()">
+           <img src="./assets/img/settings.svg" class="refine-dialogues-button" @click="open_filter_modal()" v-if="!movie_searched">
            <img src="./assets/img/share.svg" class="share-dialogue-button"  @click="init_share()">
 
 
