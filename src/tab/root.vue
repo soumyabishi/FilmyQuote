@@ -15,6 +15,52 @@
         </a>
 
 
+
+
+
+        <modal name="hello-world"
+               :adaptive="true"
+               width="700"
+               height="auto" :scrollable="true" transition="fade">
+
+            <div class="dialog-content filter-modal-content">
+                <h3 class="ui header">
+                    Pick some tags you're interested in
+                    <div class="sub header">We will use them to customize the dialogues based on your interest</div>
+
+                </h3>
+
+
+                <button class="ui tiny button compact tag_button" v-for="tag in all_tags" v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}" @click="update_tag(tag.id, tag.selected)">
+                    {{ tag.name }}
+                </button>
+
+
+                <h3 class="ui header">
+                    Set year range (Showing {{sliderValue.value[0]}} - {{sliderValue.value[1]}})
+                    <div class="sub header">Drag the slider to change</div>
+
+                </h3>
+
+                <vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"
+                  tooltip='hover' :dot-size="6" :dot-width="12" :dot-height="12" :height="4"
+                            :processStyle='[{"backgroundColor": "#00b5ad"}]'
+                            :tooltipStyle='[{"backgroundColor": "#00b5ad", "borderColor": "#00b5ad"}, {"backgroundColor": "#00b5ad", "borderColor": "#00b5ad"}]'
+                 >
+
+                </vue_slider>
+
+
+            </div>
+            <!--<vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>-->
+
+             <!--{{sliderValue.value}}-->
+
+
+
+        </modal>
+
+
         <!--<p class="spacebar">Hit <span>SPACEBAR</span> to shuffle.</p>-->
 
         <!--<p class="made-by ibm-type-mono">-->
@@ -33,36 +79,36 @@
            <img src="./assets/img/share.svg" class="share-dialogue-button"  @click="init_share()">
 
 
-        <div class="ui modal filter_modal">
-            <!--<div class="ui header">-->
-               <!--Preferences-->
+        <!--<div class="ui modal filter_modal">-->
+            <!--&lt;!&ndash;<div class="ui header">&ndash;&gt;-->
+               <!--&lt;!&ndash;Preferences&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<div class="content filter-modal-content">-->
+
+                <!--<h3 class="ui header">-->
+                    <!--Pick some tags you're interested in-->
+                    <!--<div class="sub header">We will use them to customize the dialogues based on your interest</div>-->
+
+                <!--</h3>-->
+
+
+                <!--<button class="ui tiny button tag_button" v-for="tag in all_tags" v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}" @click="update_tag(tag.id, tag.selected)">-->
+                    <!--{{ tag.name }}-->
+                <!--</button>-->
+                <!--<div class="ui hidden divider"></div>-->
+                <!--<div class="ui hidden divider"></div>-->
+                <!--<div class="ui hidden divider"></div>-->
+                <!--<h3 class="ui header">-->
+                    <!--Set min and max movie year-->
+                <!--</h3>-->
+                <!--<vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>-->
             <!--</div>-->
-            <div class="content filter-modal-content">
 
-                <h3 class="ui header">
-                    Pick some tags you're interested in
-                    <div class="sub header">We will use them to customize the dialogues based on your interest</div>
+            <!--<div class="actions">-->
+                <!--<div class="ui deny basic button">Close</div>-->
+            <!--</div>-->
 
-                </h3>
-
-
-                <button class="ui tiny button tag_button" v-for="tag in all_tags" v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}" @click="update_tag(tag.id, tag.selected)">
-                    {{ tag.name }}
-                </button>
-                <div class="ui hidden divider"></div>
-                <div class="ui hidden divider"></div>
-                <div class="ui hidden divider"></div>
-                <h3 class="ui header">
-                    Set min and max movie year
-                </h3>
-                <vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>
-            </div>
-
-            <div class="actions">
-                <div class="ui deny basic button">Close</div>
-            </div>
-
-        </div>
+        <!--</div>-->
 
         <div class="something-semantic">
             <div class="something-else-semantic">
@@ -185,7 +231,7 @@
 
 </template>
 <script>
-    import moment from 'moment'
+    import moment from 'moment';
     import {Picker} from 'emoji-mart-vue';
     import {Emoji} from 'emoji-mart-vue';
     import placeHolderUrl from './assets/img/placeholder.svg';
@@ -241,7 +287,7 @@
                 sliderValue: {
                     value: [0, 0],
                     max: 0,
-                    min: 0
+                    min: 0,
                 },
                 first_time_user: false,
                 base_url: 'http://18.219.186.38',
@@ -309,14 +355,16 @@
             },
 
             open_filter_modal() {
+                    this.$modal.show('hello-world');
 
-                window.setTimeout(() => {
-                    $('.filter_modal')
-                        .modal({
-                            observeChanges: true
-                        })
-                        .modal('show');
-                }, 30)
+//
+//                window.setTimeout(() => {
+//                    $('.filter_modal')
+//                        .modal({
+//                            observeChanges: true
+//                        })
+//                        .modal('show');
+//                }, 30)
 
 
             },
@@ -701,7 +749,7 @@
     @import '../../node_modules/@ibm/type/css/ibm-type.min.css';
     @import './assets/css/main.css';
     @import '../../node_modules/vue-range-slider/dist/vue-range-slider.css';
+    @import '../../node_modules/vue-js-modal/dist/styles.css';
     @import url("https://use.typekit.net/fde6xbm.css");
-
 
 </style>
