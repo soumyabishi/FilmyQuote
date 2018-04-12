@@ -15,6 +15,15 @@
         </a>
 
 
+        <div class="ui search" id="search_movie_dropdown" v-if="!movie_searched">
+            <div class="ui inverted transparent left icon input">
+                <input class="prompt" type="text" placeholder="Search movies...">
+                <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+        </div>
+
+
         <!--<div class="ui fluid multiple search selection dropdown" id="search_movie_dropdown" v-if="!movie_searched">-->
             <!--<input type="hidden" name="country" value="kp">-->
             <!--<i class="dropdown icon"></i>-->
@@ -643,16 +652,21 @@
             this.check_first_time_user();
             this.fetch_tags();
             this.fetch_year_range();
-            $('#search_movie_dropdown').dropdown({
+            $('#search_movie_dropdown').search({
                 apiSettings: {
                     url: this.base_url + '/api/search-movies/?query={query}',
-                    onChange: function(value, text, $selectedItem) {
-                        let movie_details = value.split('|');
-                        let movie_name = movie_details[0];
-                        let movie_year = movie_details[1];
-                        this.set_search_movie_details(movie_name, movie_year);
-                    }
+//                    onChange: function(value, text, $selectedItem) {
+//                        let movie_details = value.split('|');
+//                        let movie_name = movie_details[0];
+//                        let movie_year = movie_details[1];
+//                        this.set_search_movie_details(movie_name, movie_year);
+//                    },
                 },
+                fields: {
+                    results : 'results',
+                    title   : 'name',
+                },
+                minCharacters : 3
             });
         },
 
