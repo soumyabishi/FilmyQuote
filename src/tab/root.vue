@@ -1,11 +1,7 @@
 <template>
     <div class="quote-wrapper" id="quote_wrapper">
-
-        <!--<span>{{ date | moment }}</span>-->
-        <!--<span>{{ time | moment }}</span>-->
-
         <div class="clock">
-            <p>{{moment().format('HH:mm a')}}
+            <p>{{moment().format('hh:mm a')}}
                 <span>{{moment().format('ddd, MMMM D')}}</span>
             </p>
         </div>
@@ -14,10 +10,10 @@
             <img alt="FilmyQuote" src="./assets/img/logo.svg">
         </a>
 
-
         <div class="ui search" id="search_movie_dropdown">
             <div class="ui inverted transparent left icon input">
-                <input class="prompt" type="text" placeholder="Search movies..." v-model="search_movie_name" v-if="movie_searched" v-shortkey.avoid>
+                <input class="prompt" type="text" placeholder="Search movies..." v-model="search_movie_name"
+                       v-if="movie_searched" v-shortkey.avoid>
                 <input class="prompt" type="text" placeholder="Search movies..." v-else v-shortkey.avoid>
                 <i class="search icon"></i>
             </div>
@@ -25,21 +21,13 @@
             <div class="results"></div>
         </div>
 
-
-        <!--<div class="ui fluid multiple search selection dropdown" id="search_movie_dropdown" v-if="!movie_searched">-->
-            <!--<input type="hidden" name="country" value="kp">-->
-            <!--<i class="dropdown icon"></i>-->
-            <!--<input class="search">-->
-            <!--<div class="default text">Search movies...</div>-->
-        <!--</div>-->
-        <!--<button v-if="movie_searched" @click="clear_search_movie_details()">clear</button>-->
-
-
-
         <modal name="hello-world"
                :adaptive="true"
                width="700"
-               height="auto" :scrollable="true" transition="fade">
+               height="auto"
+               :scrollable="true"
+               @before-close="beforeClose"
+               transition="fade">
 
             <div class="dialog-content filter-modal-content">
 
@@ -50,7 +38,9 @@
                 </h3>
 
 
-                <button class="ui tiny button compact tag_button" v-for="tag in all_tags" v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}" @click="update_tag(tag.id, tag.selected)">
+                <button class="ui tiny button compact tag_button" v-for="tag in all_tags"
+                        v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}"
+                        @click="update_tag(tag.id, tag.selected)">
                     {{ tag.name }}
                 </button>
 
@@ -62,23 +52,16 @@
                 </h3>
 
 
-                <vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"
-                  tooltip='hover' :dot-size="6" :dot-width="12" :dot-height="12" :height="4"
-                            :processStyle='[{"backgroundColor": "#00b5ad"}]'
+                <vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max"
+                            :interval="1"
+                            tooltip='hover' :dot-size="6" :dot-width="12" :dot-height="12" :height="4"
+                            :processStyle='{"backgroundColor": "#00b5ad"}'
                             :tooltipStyle='[{"backgroundColor": "#00b5ad", "borderColor": "#00b5ad"}, {"backgroundColor": "#00b5ad", "borderColor": "#00b5ad"}]'
-                 >
+                >
 
                 </vue_slider>
 
-
-
-
-
             </div>
-            <!--<vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>-->
-
-             <!--{{sliderValue.value}}-->
-
 
 
         </modal>
@@ -87,7 +70,7 @@
         <p class="spacebar">Hit <span>SPACEBAR</span> to shuffle.</p>
 
         <!--<p class="made-by ibm-type-mono">-->
-            <!--Made with love by <a href="https://github.com/soumyabishi" target="_blank">Soumya</a> & <a href="https://github.com/shiv-param" target="_blank">Shiv</a>.-->
+        <!--Made with love by <a href="https://github.com/soumyabishi" target="_blank">Soumya</a> & <a href="https://github.com/shiv-param" target="_blank">Shiv</a>.-->
         <!--</p>-->
 
 
@@ -98,38 +81,39 @@
         <p class="overlay-text">FilmyQuote</p>
 
 
-           <img src="./assets/img/settings.svg" class="refine-dialogues-button" @click="open_filter_modal()" v-if="!movie_searched">
-           <!--<img src="./assets/img/share.svg" class="share-dialogue-button"  @click="init_share()">-->
+        <img src="./assets/img/settings.svg" class="refine-dialogues-button" @click="open_filter_modal()"
+             v-if="!movie_searched">
+        <!--<img src="./assets/img/share.svg" class="share-dialogue-button"  @click="init_share()">-->
 
 
         <!--<div class="ui modal filter_modal">-->
-            <!--&lt;!&ndash;<div class="ui header">&ndash;&gt;-->
-               <!--&lt;!&ndash;Preferences&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--<div class="content filter-modal-content">-->
+        <!--&lt;!&ndash;<div class="ui header">&ndash;&gt;-->
+        <!--&lt;!&ndash;Preferences&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<div class="content filter-modal-content">-->
 
-                <!--<h3 class="ui header">-->
-                    <!--Pick some tags you're interested in-->
-                    <!--<div class="sub header">We will use them to customize the dialogues based on your interest</div>-->
+        <!--<h3 class="ui header">-->
+        <!--Pick some tags you're interested in-->
+        <!--<div class="sub header">We will use them to customize the dialogues based on your interest</div>-->
 
-                <!--</h3>-->
+        <!--</h3>-->
 
 
-                <!--<button class="ui tiny button tag_button" v-for="tag in all_tags" v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}" @click="update_tag(tag.id, tag.selected)">-->
-                    <!--{{ tag.name }}-->
-                <!--</button>-->
-                <!--<div class="ui hidden divider"></div>-->
-                <!--<div class="ui hidden divider"></div>-->
-                <!--<div class="ui hidden divider"></div>-->
-                <!--<h3 class="ui header">-->
-                    <!--Set min and max movie year-->
-                <!--</h3>-->
-                <!--<vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>-->
-            <!--</div>-->
+        <!--<button class="ui tiny button tag_button" v-for="tag in all_tags" v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}" @click="update_tag(tag.id, tag.selected)">-->
+        <!--{{ tag.name }}-->
+        <!--</button>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<h3 class="ui header">-->
+        <!--Set min and max movie year-->
+        <!--</h3>-->
+        <!--<vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>-->
+        <!--</div>-->
 
-            <!--<div class="actions">-->
-                <!--<div class="ui deny basic button">Close</div>-->
-            <!--</div>-->
+        <!--<div class="actions">-->
+        <!--<div class="ui deny basic button">Close</div>-->
+        <!--</div>-->
 
         <!--</div>-->
 
@@ -142,13 +126,13 @@
                         <div id="wrap">
                             <div id="loader">
                                 <div class="anim">
-                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-e37a8d47-6bc3-4828-eaa8-140b6857d23f.png" />
-                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-ab3019c2-e584-4f2a-e241-4ef26b3bff6a.png" />
-                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-ef2410cf-b0c7-45f5-c93c-255aba08ae9c.png" />
-                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-2772ff4c-47ab-430b-988e-bde2c88e42c1.png" />
-                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-6a64bf1d-5ae7-4a68-d37d-f575d49f30ff.png" />
-                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-a83f71c2-95a7-40d7-ce86-70eb2329fd8f.png" />
-                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-bf9170b3-13da-4b41-bd6c-ee17d8e96c5b.png" />
+                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-e37a8d47-6bc3-4828-eaa8-140b6857d23f.png"/>
+                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-ab3019c2-e584-4f2a-e241-4ef26b3bff6a.png"/>
+                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-ef2410cf-b0c7-45f5-c93c-255aba08ae9c.png"/>
+                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-2772ff4c-47ab-430b-988e-bde2c88e42c1.png"/>
+                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-6a64bf1d-5ae7-4a68-d37d-f575d49f30ff.png"/>
+                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-a83f71c2-95a7-40d7-ce86-70eb2329fd8f.png"/>
+                                    <img src="https://s3.amazonaws.com/redpen-prod/red-pen-bf9170b3-13da-4b41-bd6c-ee17d8e96c5b.png"/>
                                 </div>
                             </div>
                         </div>
@@ -167,40 +151,64 @@
                             <div class="content">
 
                                 <img src="./assets/img/quote.svg" alt="Quote" class="quote_icon">
-                                <h1 class="quote-text" v-bind:class="{'small': font_isSmall, 'medium': font_isMedium, 'large': font_isLarge}">{{filmyQuotes.dialogue.dialogue}}</h1>
-                                <p class="text">&mdash;&nbsp;{{filmyQuotes.dialogue.star}}, {{filmyQuotes.dialogue.movie_name}} ({{filmyQuotes.dialogue.movie_year}})</p>
+                                <h1 class="quote-text"
+                                    v-bind:class="{'small': font_isSmall, 'medium': font_isMedium, 'large': font_isLarge}">
+                                    {{filmyQuotes.dialogue.dialogue}}</h1>
+                                <p class="text">
+                                    &mdash;&nbsp;{{filmyQuotes.dialogue.star}}, {{filmyQuotes.dialogue.movie_name}} ({{filmyQuotes.dialogue.movie_year}})</p>
 
                                 <div class="emoji">
                                     <ul class="reactions">
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions">
                                             <span class="reaction-emo">
-                                                <emoji set="apple" emoji="heart_eyes" :size="25" v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('heart_eyes')}" v-if="emotion.mood == 'heart_eyes'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')"></emoji>
-                                                <emoji set="apple" emoji="joy" :size="25" v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('joy')}"v-if="emotion.mood == 'joy'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')"></emoji>
-                                                <emoji set="apple" emoji="flushed" :size="25"  v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('flushed')}" v-if="emotion.mood == 'flushed'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')"></emoji>
-                                                <emoji set="apple" emoji="pensive" :size="25"  v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('pensive')}" v-if="emotion.mood == 'pensive'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')"></emoji>
-                                                <emoji set="apple" emoji="rage" :size="25"  v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('rage')}" v-if="emotion.mood == 'rage'" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')"></emoji>
+                                                <emoji set="apple" emoji="heart_eyes" :size="25"
+                                                       v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('heart_eyes')}"
+                                                       v-if="emotion.mood == 'heart_eyes'"
+                                                       v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')"></emoji>
+                                                <emoji set="apple" emoji="joy" :size="25"
+                                                       v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('joy')}"
+                                                       v-if="emotion.mood == 'joy'"
+                                                       v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')"></emoji>
+                                                <emoji set="apple" emoji="flushed" :size="25"
+                                                       v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('flushed')}"
+                                                       v-if="emotion.mood == 'flushed'"
+                                                       v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')"></emoji>
+                                                <emoji set="apple" emoji="pensive" :size="25"
+                                                       v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('pensive')}"
+                                                       v-if="emotion.mood == 'pensive'"
+                                                       v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')"></emoji>
+                                                <emoji set="apple" emoji="rage" :size="25"
+                                                       v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('rage')}"
+                                                       v-if="emotion.mood == 'rage'"
+                                                       v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')"></emoji>
                                             </span>
                                             {{emotion.count}}
                                         </li>
                                     </ul>
-                                    <div class="button add_reaction_button" :class="{'loading':adding_reaction}" v-if="reaction_not_added">Add reaction
+                                    <div class="button add_reaction_button" :class="{'loading':adding_reaction}"
+                                         v-if="reaction_not_added">Add reaction
                                     </div>
                                     <div class="ui flowing popup top right transition hidden" v-if="reaction_not_added">
                                         <ul class="emojis-wrapper">
                                             <li class="emo">
-                                                <emoji set="apple" emoji="heart_eyes" :size="35"  v-on:click="add_reaction(filmyQuotes.dialogue.id,'heart_eyes')"></emoji>
+                                                <emoji set="apple" emoji="heart_eyes" :size="35"
+                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'heart_eyes')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="joy" :size="35"  v-on:click="add_reaction(filmyQuotes.dialogue.id,'joy')"></emoji>
+                                                <emoji set="apple" emoji="joy" :size="35"
+                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'joy')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="flushed" :size="35"  v-on:click="add_reaction(filmyQuotes.dialogue.id,'flushed')"></emoji>
+                                                <emoji set="apple" emoji="flushed" :size="35"
+                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'flushed')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="pensive" :size="35"  v-on:click="add_reaction(filmyQuotes.dialogue.id,'pensive')"></emoji>
+                                                <emoji set="apple" emoji="pensive" :size="35"
+                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'pensive')"></emoji>
                                             </li>
                                             <li class="emo">
-                                                <emoji set="apple" emoji="rage" :size="35"  v-on:click="add_reaction(filmyQuotes.dialogue.id,'rage')"></emoji>
+                                                <emoji set="apple" emoji="rage" :size="35"
+                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'rage')"></emoji>
                                             </li>
                                         </ul>
                                     </div>
@@ -213,7 +221,7 @@
                     </section>
 
                     <!--<section class="no-quote">-->
-                           <!--<p>Sorry, no dialogues to show! :(</p>-->
+                    <!--<p>Sorry, no dialogues to show! :(</p>-->
                     <!--</section>-->
 
 
@@ -225,7 +233,7 @@
 
             <ul>
                 <!--<li class="movie-name">{{filmyQuotes.dialogue.movie_name}} <span-->
-                        <!--class="year">({{filmyQuotes.dialogue.movie_year}})</span>-->
+                <!--class="year">({{filmyQuotes.dialogue.movie_year}})</span>-->
                 <!--</li>-->
                 <li class="tags">
                     <span v-for="(tag,index) in filmyQuotes.dialogue.tags">
@@ -311,15 +319,15 @@
 
         methods: {
 
-            check_search_movie_details(){
+            check_search_movie_details() {
                 this.search_movie_name = this.$localStorage.get('filmy_quotes_search_movie_name');
                 this.search_movie_year = this.$localStorage.get('filmy_quotes_search_movie_year');
-                if(this.search_movie_name != '0') {
+                if (this.search_movie_name != '0') {
                     this.movie_searched = true;
                 }
             },
 
-            set_search_movie_details(movie_name, movie_year){
+            set_search_movie_details(movie_name, movie_year) {
                 this.$localStorage.set('filmy_quotes_search_movie_name', movie_name);
                 this.$localStorage.set('filmy_quotes_search_movie_year', movie_year);
                 this.search_movie_name = movie_name;
@@ -327,7 +335,7 @@
                 this.movie_searched = true;
             },
 
-            clear_search_movie_details(){
+            clear_search_movie_details() {
                 this.$localStorage.set('filmy_quotes_search_movie_name', '0');
                 this.$localStorage.set('filmy_quotes_search_movie_year', '0');
                 this.search_movie_name = '0';
@@ -344,19 +352,20 @@
                 this.loading_quote = true;
                 let url = this.base_url + '/api/get-year-range/';
                 this.$http.get(url).then(response => {
-                        this.sliderValue.min = response.data.min_year;
-                        this.sliderValue.max = response.data.max_year;
-                        let min_year_filter = this.$localStorage.get('filmy_quotes_user_added_min_year');
-                        let max_year_filter = this.$localStorage.get('filmy_quotes_user_added_max_year');
-                        if (min_year_filter === 0) {
-                            min_year_filter = response.data.min_year;
-                            this.$localStorage.set('filmy_quotes_user_added_min_year', min_year_filter);
-                        }
-                        if (max_year_filter === 0) {
-                            max_year_filter = response.data.max_year;
-                        }
-                        this.sliderValue.value = [min_year_filter, max_year_filter];
-                        this.get_quote();
+                    this.sliderValue.min = response.data.min_year;
+                    this.sliderValue.max = response.data.max_year;
+                    let min_year_filter = this.$localStorage.get('filmy_quotes_user_added_min_year');
+                    let max_year_filter = this.$localStorage.get('filmy_quotes_user_added_max_year');
+                    if (min_year_filter === 0) {
+                        min_year_filter = response.data.min_year;
+                        this.$localStorage.set('filmy_quotes_user_added_min_year', min_year_filter);
+                    }
+                    if (max_year_filter === 0) {
+                        max_year_filter = response.data.max_year;
+                    }
+                    this.sliderValue.value = [min_year_filter, max_year_filter];
+                    debugger
+                    this.get_quote();
                 }, response => {
                 });
             },
@@ -371,7 +380,7 @@
             },
 
             open_filter_modal() {
-                    this.$modal.show('hello-world');
+                this.$modal.show('hello-world');
 
 //
 //                window.setTimeout(() => {
@@ -390,7 +399,7 @@
                 return all_reacted_moods.dialogue_id === mood;
             },
 
-            check_reaction_added_for_mood(mood){
+            check_reaction_added_for_mood(mood) {
                 return (this.reaction_added == mood && this.reaction_not_added == false);
             },
 
@@ -398,7 +407,7 @@
                 let all_reacted_dialogues = this.$localStorage.get('filmy_quotes_user_added_dialogues');
                 // console.log(all_reacted_dialogues);
                 let reacted = all_reacted_dialogues.indexOf(dialogue_id) > -1;
-                if (reacted){
+                if (reacted) {
                     let all_reacted_moods = this.$localStorage.get('filmy_quotes_user_added_moods');
                     this.reaction_added = all_reacted_moods.dialogue_id;
                 }
@@ -647,8 +656,11 @@
                 return moment();
             },
 
-        },
+            beforeClose(event) {
+                this.get_quote();
+            }
 
+        },
 
 
         mounted() {
@@ -661,32 +673,22 @@
                 apiSettings: {
                     url: this.base_url + '/api/search-movies/?query={query}',
                 },
-                onSelect: function(result, response) {
+                onSelect: function (result, response) {
                     let movie_name = result.name;
                     let movie_year = result.year;
                     vm.set_search_movie_details(movie_name, movie_year);
                     vm.fetch_year_range();
                 },
                 fields: {
-                    results : 'results',
-                    title   : 'name',
+                    results: 'results',
+                    title: 'name',
                 },
             });
         },
 
-        filters: {
-//            moment: function (date) {
-//                return moment(date).format('ddd, MMMM D');
-//            },
-
-//            moment: function (time) {
-//                return moment(time).format('H : m');
-//            }
-        }
     }
 
 </script>
-
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -699,6 +701,5 @@
     @import './assets/css/main.css';
     @import '../../node_modules/vue-range-slider/dist/vue-range-slider.css';
     @import '../../node_modules/vue-js-modal/dist/styles.css';
-    /*@import url("https://use.typekit.net/fde6xbm.css");*/
 
 </style>
