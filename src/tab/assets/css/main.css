@@ -1,5 +1,6 @@
 body {
-  background-color: #192f42; }
+  background-color: #192f42;
+  font-size: 14px; }
 
 a {
   cursor: pointer; }
@@ -240,8 +241,16 @@ section.quote {
 
 #search_movie_dropdown {
   position: absolute;
-  top: 33px;
-  left: 220px; }
+  top: 37px;
+  left: 220px;
+  min-width: 250px; }
+  #search_movie_dropdown .close.icon {
+    right: -76px;
+    left: auto;
+    color: #ffffff57;
+    cursor: pointer; }
+    #search_movie_dropdown .close.icon:hover {
+      color: #fff; }
 
 p.made-by {
   grid-area: decotitle;
@@ -262,11 +271,11 @@ p.made-by {
 p.overlay-text {
   position: fixed;
   font-weight: 800;
-  font-size: 18em;
+  font-size: 20em;
   z-index: -9999;
   text-align: center;
   color: #162b3e;
-  top: -190px;
+  top: -170px;
   left: -109px; }
 
 .quote-details {
@@ -474,5 +483,10 @@ p.overlay-text {
     background-color: #687480; }
   100% {
     background-color: #ffffff; } }
+.ui.search > .results .result .title {
+  font-weight: 500 !important; }
+
+.ui.search > .results .result {
+  font-size: 13px !important; }
 
 /*# sourceMappingURL=main.css.map */

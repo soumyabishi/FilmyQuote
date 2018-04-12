@@ -15,11 +15,13 @@
         </a>
 
 
-        <div class="ui search" id="search_movie_dropdown" v-if="!movie_searched">
+        <div class="ui search" id="search_movie_dropdown">
             <div class="ui inverted transparent left icon input">
-                <input class="prompt" type="text" placeholder="Search movies...">
+                <input class="prompt" type="text" placeholder="Search movies..." v-model="search_movie_name" v-if="movie_searched" v-shortkey.avoid>
+                <input class="prompt" type="text" placeholder="Search movies..." v-else v-shortkey.avoid>
                 <i class="search icon"></i>
             </div>
+            <i class="close icon" @click="clear_search_movie_details()" v-if="movie_searched"></i>
             <div class="results"></div>
         </div>
 
@@ -97,7 +99,7 @@
 
 
            <img src="./assets/img/settings.svg" class="refine-dialogues-button" @click="open_filter_modal()" v-if="!movie_searched">
-           <img src="./assets/img/share.svg" class="share-dialogue-button"  @click="init_share()">
+           <!--<img src="./assets/img/share.svg" class="share-dialogue-button"  @click="init_share()">-->
 
 
         <!--<div class="ui modal filter_modal">-->
@@ -312,7 +314,9 @@
             check_search_movie_details(){
                 this.search_movie_name = this.$localStorage.get('filmy_quotes_search_movie_name');
                 this.search_movie_year = this.$localStorage.get('filmy_quotes_search_movie_year');
-                if(this.search_movie_name != '0') this.movie_searched = true;
+                if(this.search_movie_name != '0') {
+                    this.movie_searched = true;
+                }
             },
 
             set_search_movie_details(movie_name, movie_year){
@@ -352,7 +356,7 @@
                             max_year_filter = response.data.max_year;
                         }
                         this.sliderValue.value = [min_year_filter, max_year_filter];
-                      this.get_quote();
+                        this.get_quote();
                 }, response => {
                 });
             },
@@ -652,21 +656,21 @@
             this.check_first_time_user();
             this.fetch_tags();
             this.fetch_year_range();
+            let vm = this;
             $('#search_movie_dropdown').search({
                 apiSettings: {
                     url: this.base_url + '/api/search-movies/?query={query}',
-//                    onChange: function(value, text, $selectedItem) {
-//                        let movie_details = value.split('|');
-//                        let movie_name = movie_details[0];
-//                        let movie_year = movie_details[1];
-//                        this.set_search_movie_details(movie_name, movie_year);
-//                    },
+                },
+                onSelect: function(result, response) {
+                    let movie_name = result.name;
+                    let movie_year = result.year;
+                    vm.set_search_movie_details(movie_name, movie_year);
+                    vm.fetch_year_range();
                 },
                 fields: {
                     results : 'results',
                     title   : 'name',
                 },
-                minCharacters : 3
             });
         },
 

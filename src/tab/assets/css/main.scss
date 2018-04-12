@@ -1,6 +1,7 @@
 
 body{
   background-color: #192f42;
+  font-size: 14px;
 }
 a{
   cursor: pointer;
@@ -336,9 +337,21 @@ section.quote{
 
 #search_movie_dropdown{
   position: absolute;
-  top: 33px;
+  top: 37px;
   left: 220px;
+  min-width: 250px;
+
+  .close.icon{
+    right: -76px;
+    left: auto;
+    color: #ffffff57;
+    cursor: pointer;
+    &:hover{
+      color: #fff;
+    }
+  }
 }
+
 
 p.made-by{
   grid-area: decotitle;
@@ -362,11 +375,11 @@ p.made-by{
 p.overlay-text{
   position: fixed;
   font-weight: 800;
-  font-size: 18em;
+  font-size: 20em;
   z-index: -9999;
   text-align: center;
   color: #162b3e;
-  top: -190px;
+  top: -170px;
   left: -109px;
 }
 
@@ -545,3 +558,12 @@ p.overlay-text{
   100%   {  background-color: #ffffff; }
 }
 
+
+// Overrides
+.ui.search>.results .result .title{
+  font-weight: 500 !important;
+}
+
+.ui.search>.results .result{
+  font-size: 13px !important;
+}
