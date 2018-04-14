@@ -1,7 +1,7 @@
 
 module.exports = {
   name: 'FilmyQuote',
-  version: '1.0.0',
+  version: '1.0.5',
   description: 'Famous bollywood movie dialogues in your new tab!',
   author: 'soumyabishi@outlook.com',
   manifest_version: 2,

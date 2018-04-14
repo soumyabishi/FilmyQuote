@@ -24,9 +24,7 @@
     created () { },
     mounted () { },
     methods: {
-      tab () {
-        chrome.tabs.create({ url: 'pages/app.html' })
-      }
+
     }
   }
 </script>

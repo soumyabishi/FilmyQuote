@@ -100,12 +100,14 @@ a.logo-container {
 .refine-dialogues-button {
   position: absolute;
   bottom: 30px;
-  right: 30px;
+  right: 78px;
   cursor: pointer;
   width: 20px;
   opacity: 0.5; }
   .refine-dialogues-button:hover {
     opacity: 1; }
+  .refine-dialogues-button.info {
+    right: 30px; }
 
 .share-dialogue-button {
   position: absolute;
@@ -488,5 +490,8 @@ p.overlay-text {
 
 .ui.search > .results .result {
   font-size: 13px !important; }
+
+.ui.search .prompt {
+  border-radius: 4px !important; }
 
 /*# sourceMappingURL=main.css.map */

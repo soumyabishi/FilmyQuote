@@ -26,7 +26,6 @@
                width="700"
                height="auto"
                :scrollable="true"
-               @before-close="beforeClose"
                transition="fade">
 
             <div class="dialog-content filter-modal-content">
@@ -67,6 +66,28 @@
         </modal>
 
 
+        <modal name="info"
+               :adaptive="true"
+               width="600"
+               height="auto"
+               :scrollable="true"
+               transition="fade">
+
+            <div class="dialog-content filter-modal-content">
+
+                <img src="./assets/img/info_logo.svg">
+                <span style="color: #BCBCBC">v1.0.4</span>
+
+                <p style="margin-top:10px;color:#777">Famous bollywood movie dialogues in your new tab!</p>
+
+               <h4 style="font-weight: 500;margin-bottom: 12px;margin-top: 70px;font-size: 17px;"> Made with love by</h4>
+                <p style="font-family:'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;"><a href="https://github.com/soumyabishi" target="_blank">Soumya Ranjan Bishi</a> and <a href="https://github.com/shiv-param" target="_blank">Shiv Prasad</a></p>
+            </div>
+
+
+        </modal>
+
+
         <p class="spacebar">Hit <span>SPACEBAR</span> to shuffle.</p>
 
         <!--<p class="made-by ibm-type-mono">-->
@@ -83,6 +104,10 @@
 
         <img src="./assets/img/settings.svg" class="refine-dialogues-button" @click="open_filter_modal()"
              v-if="!movie_searched">
+
+        <img src="./assets/img/info.svg" class="refine-dialogues-button info" @click="open_info_modal()">
+
+
         <!--<img src="./assets/img/share.svg" class="share-dialogue-button"  @click="init_share()">-->
 
 
@@ -364,7 +389,6 @@
                         max_year_filter = response.data.max_year;
                     }
                     this.sliderValue.value = [min_year_filter, max_year_filter];
-                    debugger
                     this.get_quote();
                 }, response => {
                 });
@@ -381,17 +405,10 @@
 
             open_filter_modal() {
                 this.$modal.show('hello-world');
+            },
 
-//
-//                window.setTimeout(() => {
-//                    $('.filter_modal')
-//                        .modal({
-//                            observeChanges: true
-//                        })
-//                        .modal('show');
-//                }, 30)
-
-
+            open_info_modal() {
+                this.$modal.show('info');
             },
 
             check_reacted_mood(dialogue_id, mood) {
@@ -674,14 +691,14 @@
                     url: this.base_url + '/api/search-movies/?query={query}',
                 },
                 onSelect: function (result, response) {
-                    let movie_name = result.name;
-                    let movie_year = result.year;
+                    let movie_name = result.value.split('|')[0].trim();
+                    let movie_year = result.value.split('|')[1].trim();
                     vm.set_search_movie_details(movie_name, movie_year);
                     vm.fetch_year_range();
                 },
                 fields: {
                     results: 'results',
-                    title: 'name',
+                    title: 'text',
                 },
             });
         },
