@@ -3,41 +3,41 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
+    <title>FilmyQuote | Famous bollywood movie dialogues in your new tab!</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link href="favicon.png" rel="icon" type="image/x-icon">
     <link rel="stylesheet" href="semantic.min.css">
     <link rel="stylesheet" href="fde6xbm.css">
 </head>
 <body>
 
 
-<img src="left_circle.svg" class="left-circle">
-<img src="right_circle.svg" class="right-circle">
+<img src="left_circle.svg" class="left-circle desktop only">
+<img src="right_circle.svg" class="right-circle desktop only">
 
-<img src="screen_shot.png" class="screenshot">
+
 
 
 
 <div class="ui container center aligned">
 
     <section class="content">
-        <img src="logo.svg" class="logo">
+        <a href="https://soumyabishi.github.io/FilmyQuote"><img src="logo.svg" class="logo"></a>
         <h2>Famous bollywood movie dialogues in your new tab</h2>
         <ul>
-            <li>12k+ dialogues</li>
+            <li>One click install</li>
             <li>12k+ dialogues</li>
             <li>Ad free</li>
         </ul>
 
-        <img src="button.png" class="button">
+        <a href="https://chrome.google.com/webstore/detail/filmyquote/blilgiggcmodgommbfmiihcblfmfgkij"><img src="button.png" class="button"></a>
 
     </section>
 
 </div>
 
-
+<img src="screen_shot.png" class="screenshot">
 
 <style>
     body{
@@ -49,6 +49,7 @@
         font-family: freight-sans-pro, sans-serif;
         font-size: 38px;
         font-weight: 500;
+        color: #192F42;
     }
 
     .content{
@@ -88,16 +89,34 @@
     li{
         display: inline-block;
         list-style: none;
-        border-right: 1px solid #777;
+        border-right: 1px solid #ccc;
         color: #777;
         font-size: 18px;
         padding-right: 10px;
         padding-left: 10px;
+
     }
+
+    li:last-child{
+       border: none;
+     }
 
     .button{
         width: 220px;
         margin-top: 25px;
+    }
+
+    @media only screen and (max-width: 64.063em) {
+        .left-circle, .right-circle{
+            display: none;
+        }
+        .screenshot{
+            position: relative;
+            width: 100%;
+            left:auto;
+            margin-left: auto;
+            bottom: auto;
+        }
     }
 </style>
 </body>
