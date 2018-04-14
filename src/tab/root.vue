@@ -381,12 +381,13 @@
                     this.sliderValue.max = response.data.max_year;
                     let min_year_filter = this.$localStorage.get('filmy_quotes_user_added_min_year');
                     let max_year_filter = this.$localStorage.get('filmy_quotes_user_added_max_year');
-                    if (min_year_filter === 0) {
-                        min_year_filter = response.data.min_year;
+                    if (Number(min_year_filter) === 0) {
+                        min_year_filter = this.sliderValue.min;
                         this.$localStorage.set('filmy_quotes_user_added_min_year', min_year_filter);
                     }
-                    if (max_year_filter === 0) {
-                        max_year_filter = response.data.max_year;
+                    if (Number(max_year_filter) === 0) {
+                        max_year_filter = this.sliderValue.max;
+                        this.$localStorage.set('filmy_quotes_user_added_max_year', max_year_filter);
                     }
                     this.sliderValue.value = [min_year_filter, max_year_filter];
                     this.get_quote();
@@ -511,21 +512,17 @@
             set_fontsize(dialogue_text) {
 
                 var numWords = dialogue_text.split(" ").length;
-//                console.log(numWords);
                 this.font_isSmall = false;
                 this.font_isMedium = false;
                 this.font_isLarge = false;
 
                 if (numWords >= 1 && numWords < 10) {
-                    // $quote.css("font-size", "36px");
                     this.font_isLarge = true;
                 }
                 else if (numWords >= 10 && numWords < 40) {
-                    // $quote.css("font-size", "33px");
                     this.font_isMedium = true;
                 }
                 else if (numWords >= 40) {
-                    // $quote.css("font-size", "26px");
                     this.font_isSmall = true;
                 }
             },
@@ -581,6 +578,9 @@
                 }, response => {
                     this.loading_quote = false;
                 });
+
+                this.$localStorage.set('filmy_quotes_user_added_min_year', this.sliderValue.value[0]);
+                this.$localStorage.set('filmy_quotes_user_added_max_year', this.sliderValue.value[1]);
 
             },
 
