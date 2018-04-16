@@ -245,9 +245,9 @@
                         </div>
                     </section>
 
-                    <!--<section class="no-quote">-->
-                    <!--<p>Sorry, no dialogues to show! :(</p>-->
-                    <!--</section>-->
+                    <section class="no-quote" v-if="no_quotes_found">
+                    <p>Sorry, no dialogues to show! :(</p>
+                    </section>
 
 
                 </div>
@@ -337,6 +337,7 @@
                 search_movie_name: '0',
                 search_movie_year: '0',
                 movie_searched: false,
+                no_quotes_found: false,
             }
         },
 
@@ -547,6 +548,7 @@
             },
 
             get_quote() {
+                this.no_quotes_found = false;
                 this.loading_quote = true;
                 let url = this.base_url + '/api/get-dialogues/?include_tags=';
                 let filtered_tags = this.$localStorage.get("filmy_quotes_user_added_tag_filters");
@@ -577,6 +579,7 @@
 
                 }, response => {
                     this.loading_quote = false;
+                    this.no_quotes_found = true;
                 });
 
                 this.$localStorage.set('filmy_quotes_user_added_min_year', this.sliderValue.value[0]);
