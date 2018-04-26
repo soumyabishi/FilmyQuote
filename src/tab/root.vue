@@ -76,7 +76,7 @@
             <div class="dialog-content filter-modal-content">
 
                 <img src="./assets/img/info_logo.svg">
-                <span style="color: #BCBCBC">v1.0.4</span>
+                <span style="color: #BCBCBC">v1.0.8</span>
 
                 <p style="margin-top:10px;color:#777">Famous bollywood movie dialogues in your new tab!</p>
 
@@ -333,7 +333,7 @@
                     min: 0,
                 },
                 first_time_user: false,
-                base_url: 'http://18.219.186.38',
+                base_url: 'https://www.filmyquote.tk',
                 search_movie_name: '0',
                 search_movie_year: '0',
                 movie_searched: false,
