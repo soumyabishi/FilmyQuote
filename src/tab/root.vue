@@ -185,43 +185,61 @@
 
                                 <div class="bollymoji">
                                     <ul class="reactions">
-                                        <li class="heart_eyes">
 
-                                            <img src="./assets/img/bollymojis/heart_eyes.png">
-                                            <p class="count">7.2k</p>
-                                            <!--<p class="text">pyaar <br>ho jayega..</p>-->
+
+                                        <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('heart_eyes')}" v-if="emotion.mood == 'heart_eyes'">
+
+                                            <img src="./assets/img/bollymojis/heart_eyes.png" class="bollymojis_text" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')">
+                                            <div class="ui flowing mini popup top center">
+                                                Pyaar ho jayega..
+                                            </div>
+
+                                            <p class="count">{{emotion.count}}</p>
                                         </li>
 
-                                        <li class="joy active">
+                                        <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('joy')}" v-if="emotion.mood == 'joy'">
 
-                                            <img src="./assets/img/bollymojis/joy.png">
-                                            <p class="count">7.2k</p>
-                                            <!--<p class="text">bahuut <br>maza aya</p>-->
+                                            <img src="./assets/img/bollymojis/joy.png" class="bollymojis_text" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')">
+                                            <div class="ui flowing mini popup top center">
+                                                Bahuut maza aya
+                                            </div>
+
+                                            <p class="count">{{emotion.count}}</p>
+                                        </li>
+
+                                        <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('flushed')}" v-if="emotion.mood == 'flushed'">
+
+                                            <img src="./assets/img/bollymojis/flushed.png" class="bollymojis_text" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')">
+                                            <div class="ui flowing mini popup top center">
+                                                Wow! kya dialogue hai!
+                                            </div>
+
+                                            <p class="count">{{emotion.count}}</p>
                                         </li>
 
 
-                                        <li class="flushed">
+                                        <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('pensive')}" v-if="emotion.mood == 'pensive'">
 
-                                            <img src="./assets/img/bollymojis/flushed.png">
-                                            <p class="count">7.2k</p>
-                                            <!--<p class="text">wow! kya <br> dialogue hai!</p>-->
+                                            <img src="./assets/img/bollymojis/pensive.png" class="bollymojis_text" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')">
+                                            <div class="ui flowing mini popup top center">
+                                                Mummy ko bol dunga
+                                            </div>
+
+                                            <p class="count">{{emotion.count}}</p>
                                         </li>
 
 
-                                        <li class="rage">
 
-                                            <img src="./assets/img/bollymojis/rage.png">
-                                            <p class="count">7.2k</p>
-                                            <!--<p class="text">kaat ke <br>rakh dunga</p>-->
+                                        <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('rage')}" v-if="emotion.mood == 'rage'">
+
+                                            <img src="./assets/img/bollymojis/rage.png" class="bollymojis_text" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')">
+                                            <div class="ui flowing mini popup top center">
+                                                Kaat ke rakh dungas
+                                            </div>
+
+                                            <p class="count">{{emotion.count}}</p>
                                         </li>
 
-
-                                        <li class="sad">
-
-                                            <img src="./assets/img/bollymojis/sad.png">
-                                            <p class="count">7.2k</p>
-                                            <!--<p class="text">mummy ko <br>bol dunga</p>-->
-                                        </li>
 
                                     </ul>
 
@@ -595,6 +613,21 @@
                 }, 10);
             },
 
+
+            enable_bollymojis_popup(){
+                setTimeout(function () {
+                    $('.bollymojis_text')
+                        .popup({
+                            inline: true,
+                            variation: 'basic',
+                            duration: 200,
+                            position: 'top center',
+                            duration: 100
+                        });
+
+                }, 10);
+            },
+
             get_quote() {
                 this.no_quotes_found = false;
                 this.loading_quote = true;
@@ -624,6 +657,7 @@
 
                     this.set_fontsize(this.filmyQuotes.dialogue.dialogue);
                     this.enable_emoji_popup();
+                    this.enable_bollymojis_popup();
 
                 }, response => {
                     this.loading_quote = false;
