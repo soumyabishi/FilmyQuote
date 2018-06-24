@@ -189,7 +189,7 @@
 
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('heart_eyes')}" v-if="emotion.mood == 'heart_eyes'">
 
-                                            <img src="./assets/img/bollymojis/heart_eyes.png" class="bollymojis_text" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')">
+                                            <img src="./assets/img/bollymojis/heart_eyes.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'heart_eyes')">
                                             <div class="ui flowing mini popup top center">
                                                 Pyaar ho jayega..
                                             </div>
@@ -199,7 +199,7 @@
 
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('joy')}" v-if="emotion.mood == 'joy'">
 
-                                            <img src="./assets/img/bollymojis/joy.png" class="bollymojis_text" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')">
+                                            <img src="./assets/img/bollymojis/joy.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'joy')">
                                             <div class="ui flowing mini popup top center">
                                                 Bahuut maza aya
                                             </div>
@@ -209,7 +209,7 @@
 
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('flushed')}" v-if="emotion.mood == 'flushed'">
 
-                                            <img src="./assets/img/bollymojis/flushed.png" class="bollymojis_text" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')">
+                                            <img src="./assets/img/bollymojis/flushed.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'flushed')">
                                             <div class="ui flowing mini popup top center">
                                                 Wow! kya dialogue hai!
                                             </div>
@@ -220,7 +220,7 @@
 
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('pensive')}" v-if="emotion.mood == 'pensive'">
 
-                                            <img src="./assets/img/bollymojis/pensive.png" class="bollymojis_text" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')">
+                                            <img src="./assets/img/bollymojis/pensive.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'pensive')">
                                             <div class="ui flowing mini popup top center">
                                                 Mummy ko bol dunga
                                             </div>
@@ -232,7 +232,7 @@
 
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('rage')}" v-if="emotion.mood == 'rage'">
 
-                                            <img src="./assets/img/bollymojis/rage.png" class="bollymojis_text" v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')">
+                                            <img src="./assets/img/bollymojis/rage.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'rage')">
                                             <div class="ui flowing mini popup top center">
                                                 Kaat ke rakh dungas
                                             </div>
@@ -244,6 +244,7 @@
                                     </ul>
 
                                 </div>
+
 
 
 
@@ -671,42 +672,51 @@
 
             add_reaction(id, mood) {
                 this.adding_reaction = true;
-                let data = {
-                    'dialogue': id,
-                    'mood': mood
-                };
-                this.$http.post(this.base_url + '/api/add-emotion/', data).then(response => {
-                    let emotions = this.filmyQuotes.dialogue.emotions;
-                    let emotion_found = false;
-                    let emotion_at = -1;
-                    for (let i = 0; i < emotions.length; i++) {
-                        if (emotions[i].mood === mood) {
-                            emotion_found = true;
-                            emotion_at = i;
-                            break
+
+                if (this.check_reacted_mood(id, mood)) {
+                    this.remove_reaction(id, mood);
+                }
+
+                else{
+                    let data = {
+                        'dialogue': id,
+                        'mood': mood
+                    };
+                    this.$http.post(this.base_url + '/api/add-emotion/', data).then(response => {
+                        let emotions = this.filmyQuotes.dialogue.emotions;
+                        let emotion_found = false;
+                        let emotion_at = -1;
+                        for (let i = 0; i < emotions.length; i++) {
+                            if (emotions[i].mood === mood) {
+                                emotion_found = true;
+                                emotion_at = i;
+                                break
+                            }
                         }
-                    }
-                    if (emotion_found) {
-                        emotions[emotion_at].count = emotions[emotion_at].count + 1;
-                    } else {
-                        emotions.push({
-                            mood: mood,
-                            count: 1
-                        })
-                    }
-                    this.filmyQuotes.dialogue.emotions = emotions;
-                    this.reaction_not_added = false;
-                    this.reaction_added = mood;
-                    this.add_to_reacted_dialogues(id, mood);
-                    this.adding_reaction = false;
-                    this.$forceUpdate();
-                }, response => {
-                    this.adding_reaction = false;
-                });
+                        if (emotion_found) {
+                            emotions[emotion_at].count = emotions[emotion_at].count + 1;
+                        } else {
+                            emotions.push({
+                                mood: mood,
+                                count: 1
+                            })
+                        }
+                        this.filmyQuotes.dialogue.emotions = emotions;
+                        this.reaction_not_added = false;
+                        this.reaction_added = mood;
+                        this.add_to_reacted_dialogues(id, mood);
+                        this.adding_reaction = false;
+                        this.$forceUpdate();
+                    }, response => {
+                        this.adding_reaction = false;
+                    });
+                }
+
+
+
             },
 
             remove_reaction(id, mood) {
-                if (this.check_reacted_mood(id, mood)) {
                     let data = {
                         'dialogue': id,
                         'mood': mood
@@ -737,7 +747,6 @@
                         this.$forceUpdate();
                     }, response => {
                     });
-                }
             },
 
             init_share() {
