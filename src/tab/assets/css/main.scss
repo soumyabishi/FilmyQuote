@@ -576,4 +576,42 @@ p.overlay-text{
   border-radius: 4px !important;
 }
 
+.bollymoji{
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 
+  .reactions{
+    margin: 0;
+    padding: 0;
+    li{
+      list-style: none;
+      text-align: center;
+      display: inline-block;
+      margin-right: 10px;
+      &:hover{
+        img {
+          background-color: rgba(0, 0, 0, 0.2);
+          border-radius: 45px;
+        }
+      }
+      &.active{
+        img{
+          background-color: rgba(0, 0, 0, 0.2);
+          border-radius: 45px;
+        }
+      }
+      p{
+        font-size: 12px;
+        &.text{
+          margin-top: 10px;
+        }
+      }
+      img{
+        width: 45px;
+        padding: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}

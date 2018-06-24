@@ -182,63 +182,111 @@
                                 <p class="text">
                                     &mdash;&nbsp;{{filmyQuotes.dialogue.star}}, {{filmyQuotes.dialogue.movie_name}} ({{filmyQuotes.dialogue.movie_year}})</p>
 
-                                <div class="emoji">
+
+                                <div class="bollymoji">
                                     <ul class="reactions">
-                                        <li v-for="emotion in filmyQuotes.dialogue.emotions">
-                                            <span class="reaction-emo">
-                                                <emoji set="apple" emoji="heart_eyes" :size="25"
-                                                       v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('heart_eyes')}"
-                                                       v-if="emotion.mood == 'heart_eyes'"
-                                                       v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')"></emoji>
-                                                <emoji set="apple" emoji="joy" :size="25"
-                                                       v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('joy')}"
-                                                       v-if="emotion.mood == 'joy'"
-                                                       v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')"></emoji>
-                                                <emoji set="apple" emoji="flushed" :size="25"
-                                                       v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('flushed')}"
-                                                       v-if="emotion.mood == 'flushed'"
-                                                       v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')"></emoji>
-                                                <emoji set="apple" emoji="pensive" :size="25"
-                                                       v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('pensive')}"
-                                                       v-if="emotion.mood == 'pensive'"
-                                                       v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')"></emoji>
-                                                <emoji set="apple" emoji="rage" :size="25"
-                                                       v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('rage')}"
-                                                       v-if="emotion.mood == 'rage'"
-                                                       v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')"></emoji>
-                                            </span>
-                                            {{emotion.count}}
+                                        <li class="heart_eyes">
+
+                                            <img src="./assets/img/bollymojis/heart_eyes.png">
+                                            <p class="count">7.2k</p>
+                                            <!--<p class="text">pyaar <br>ho jayega..</p>-->
                                         </li>
+
+                                        <li class="joy active">
+
+                                            <img src="./assets/img/bollymojis/joy.png">
+                                            <p class="count">7.2k</p>
+                                            <!--<p class="text">bahuut <br>maza aya</p>-->
+                                        </li>
+
+
+                                        <li class="flushed">
+
+                                            <img src="./assets/img/bollymojis/flushed.png">
+                                            <p class="count">7.2k</p>
+                                            <!--<p class="text">wow! kya <br> dialogue hai!</p>-->
+                                        </li>
+
+
+                                        <li class="rage">
+
+                                            <img src="./assets/img/bollymojis/rage.png">
+                                            <p class="count">7.2k</p>
+                                            <!--<p class="text">kaat ke <br>rakh dunga</p>-->
+                                        </li>
+
+
+                                        <li class="sad">
+
+                                            <img src="./assets/img/bollymojis/sad.png">
+                                            <p class="count">7.2k</p>
+                                            <!--<p class="text">mummy ko <br>bol dunga</p>-->
+                                        </li>
+
                                     </ul>
-                                    <div class="button add_reaction_button" :class="{'loading':adding_reaction}"
-                                         v-if="reaction_not_added">Add reaction
-                                    </div>
-                                    <div class="ui flowing popup top right transition hidden" v-if="reaction_not_added">
-                                        <ul class="emojis-wrapper">
-                                            <li class="emo">
-                                                <emoji set="apple" emoji="heart_eyes" :size="35"
-                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'heart_eyes')"></emoji>
-                                            </li>
-                                            <li class="emo">
-                                                <emoji set="apple" emoji="joy" :size="35"
-                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'joy')"></emoji>
-                                            </li>
-                                            <li class="emo">
-                                                <emoji set="apple" emoji="flushed" :size="35"
-                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'flushed')"></emoji>
-                                            </li>
-                                            <li class="emo">
-                                                <emoji set="apple" emoji="pensive" :size="35"
-                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'pensive')"></emoji>
-                                            </li>
-                                            <li class="emo">
-                                                <emoji set="apple" emoji="rage" :size="35"
-                                                       v-on:click="add_reaction(filmyQuotes.dialogue.id,'rage')"></emoji>
-                                            </li>
-                                        </ul>
-                                    </div>
 
                                 </div>
+
+
+
+
+                                <!--<div class="emoji">-->
+                                    <!--<ul class="reactions">-->
+                                        <!--<li v-for="emotion in filmyQuotes.dialogue.emotions">-->
+                                            <!--<span class="reaction-emo">-->
+                                                <!--<emoji set="apple" emoji="heart_eyes" :size="25"-->
+                                                       <!--v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('heart_eyes')}"-->
+                                                       <!--v-if="emotion.mood == 'heart_eyes'"-->
+                                                       <!--v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')"></emoji>-->
+                                                <!--<emoji set="apple" emoji="joy" :size="25"-->
+                                                       <!--v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('joy')}"-->
+                                                       <!--v-if="emotion.mood == 'joy'"-->
+                                                       <!--v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')"></emoji>-->
+                                                <!--<emoji set="apple" emoji="flushed" :size="25"-->
+                                                       <!--v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('flushed')}"-->
+                                                       <!--v-if="emotion.mood == 'flushed'"-->
+                                                       <!--v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')"></emoji>-->
+                                                <!--<emoji set="apple" emoji="pensive" :size="25"-->
+                                                       <!--v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('pensive')}"-->
+                                                       <!--v-if="emotion.mood == 'pensive'"-->
+                                                       <!--v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')"></emoji>-->
+                                                <!--<emoji set="apple" emoji="rage" :size="25"-->
+                                                       <!--v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('rage')}"-->
+                                                       <!--v-if="emotion.mood == 'rage'"-->
+                                                       <!--v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')"></emoji>-->
+                                            <!--</span>-->
+                                            <!--{{emotion.count}}-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                    <!--<div class="button add_reaction_button" :class="{'loading':adding_reaction}"-->
+                                         <!--v-if="reaction_not_added">Add reaction-->
+                                    <!--</div>-->
+                                    <!--<div class="ui flowing popup top right transition hidden" v-if="reaction_not_added">-->
+                                        <!--<ul class="emojis-wrapper">-->
+                                            <!--<li class="emo">-->
+                                                <!--<emoji set="apple" emoji="heart_eyes" :size="35"-->
+                                                       <!--v-on:click="add_reaction(filmyQuotes.dialogue.id,'heart_eyes')"></emoji>-->
+                                            <!--</li>-->
+                                            <!--<li class="emo">-->
+                                                <!--<emoji set="apple" emoji="joy" :size="35"-->
+                                                       <!--v-on:click="add_reaction(filmyQuotes.dialogue.id,'joy')"></emoji>-->
+                                            <!--</li>-->
+                                            <!--<li class="emo">-->
+                                                <!--<emoji set="apple" emoji="flushed" :size="35"-->
+                                                       <!--v-on:click="add_reaction(filmyQuotes.dialogue.id,'flushed')"></emoji>-->
+                                            <!--</li>-->
+                                            <!--<li class="emo">-->
+                                                <!--<emoji set="apple" emoji="pensive" :size="35"-->
+                                                       <!--v-on:click="add_reaction(filmyQuotes.dialogue.id,'pensive')"></emoji>-->
+                                            <!--</li>-->
+                                            <!--<li class="emo">-->
+                                                <!--<emoji set="apple" emoji="rage" :size="35"-->
+                                                       <!--v-on:click="add_reaction(filmyQuotes.dialogue.id,'rage')"></emoji>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
 
                             </div>
 

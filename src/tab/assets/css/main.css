@@ -494,4 +494,31 @@ p.overlay-text {
 .ui.search .prompt {
   border-radius: 4px !important; }
 
+.bollymoji {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07); }
+  .bollymoji .reactions {
+    margin: 0;
+    padding: 0; }
+    .bollymoji .reactions li {
+      list-style: none;
+      text-align: center;
+      display: inline-block;
+      margin-right: 10px; }
+      .bollymoji .reactions li:hover img {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 45px; }
+      .bollymoji .reactions li.active img {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 45px; }
+      .bollymoji .reactions li p {
+        font-size: 12px; }
+        .bollymoji .reactions li p.text {
+          margin-top: 10px; }
+      .bollymoji .reactions li img {
+        width: 45px;
+        padding: 5px;
+        cursor: pointer; }
+
 /*# sourceMappingURL=main.css.map */
