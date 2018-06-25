@@ -20,8 +20,7 @@ a {
 h1.quote-text {
   font-family: freight-sans-pro,sans-serif;
   padding-top: 0;
-  margin-top: 0;
-  font-style: italic; }
+  margin-top: 0; }
 
 .sub.header {
   margin-top: 7px !important;
@@ -512,10 +511,14 @@ p.overlay-text {
       .bollymoji .reactions li.active img {
         background-color: rgba(0, 0, 0, 0.2);
         border-radius: 45px; }
+      .bollymoji .reactions li.active p {
+        opacity: 1; }
       .bollymoji .reactions li p {
         font-size: 12px; }
         .bollymoji .reactions li p.text {
           margin-top: 10px; }
+        .bollymoji .reactions li p.active {
+          opacity: 1; }
       .bollymoji .reactions li img {
         width: 45px;
         padding: 5px;

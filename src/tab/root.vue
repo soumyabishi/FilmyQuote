@@ -1,9 +1,12 @@
 <template>
     <div class="quote-wrapper" id="quote_wrapper">
         <div class="clock">
-            <p>{{moment().format('hh:mm a')}}
-                <span>{{moment().format('ddd, MMMM D')}}</span>
+            <p>{{ curr_time }}
+                <span> {{ curr_day }}</span>
             </p>
+            <!--<p>{{moment().format('hh:mm:ss a')}}-->
+                <!--<span>{{moment().format('ddd, MMMM D')}}</span>-->
+            <!--</p>-->
         </div>
 
         <a class="logo-container" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()">
@@ -198,7 +201,6 @@
                                         </li>
 
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('joy')}" v-if="emotion.mood == 'joy'">
-
                                             <img src="./assets/img/bollymojis/joy.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'joy')">
                                             <div class="ui flowing mini popup top center">
                                                 Bahuut maza aya
@@ -382,6 +384,8 @@
                         "star_image_url": ""
                     }
                 },
+                curr_time:'',
+                curr_day:'',
                 actor_image_url: '',
                 first_quote: true,
                 loading_quote: false,
@@ -795,6 +799,10 @@
                     title: 'text',
                 },
             });
+            setInterval(function(){
+                vm.curr_time = moment().format('hh:mm a');
+                vm.curr_day = moment().format('ddd, MMMM D');
+            }, 1000);
         },
 
     }
