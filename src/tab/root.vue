@@ -605,7 +605,6 @@
                         .popup({
                             inline: true,
                             on: 'click',
-                            variation: 'basic',
                             duration: 200,
                             onShow: function () {
                                 $(".button").addClass("active");
@@ -624,7 +623,6 @@
                     $('.bollymojis_text')
                         .popup({
                             inline: true,
-                            variation: 'basic',
                             duration: 200,
                             position: 'top center',
                             duration: 100

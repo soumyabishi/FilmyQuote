@@ -315,7 +315,6 @@ p.overlay-text {
         text-transform: capitalize; }
 
 .ui.popup {
-  border: none !important;
   border-radius: 90px !important; }
 
 #loader {
@@ -505,9 +504,16 @@ p.overlay-text {
       text-align: center;
       display: inline-block;
       margin-right: 10px; }
+      .bollymoji .reactions li img {
+        transition: -webkit-transform 0.15s cubic-bezier(0.2, 0, 0.13, 2);
+        transition: transform 0.15s cubic-bezier(0.2, 0, 0.13, 2);
+        transition: transform 0.15s cubic-bezier(0.2, 0, 0.13, 2), -webkit-transform 0.15s cubic-bezier(0.2, 0, 0.13, 2);
+        -webkit-transform: scale(1); }
       .bollymoji .reactions li:hover img {
         background-color: rgba(0, 0, 0, 0.2);
-        border-radius: 45px; }
+        border-radius: 45px;
+        -webkit-transform: scale(1.4);
+        transform: scale(1.3); }
       .bollymoji .reactions li.active img {
         background-color: rgba(0, 0, 0, 0.2);
         border-radius: 45px; }
