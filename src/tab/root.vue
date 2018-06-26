@@ -236,7 +236,7 @@
 
                                             <img src="./assets/img/bollymojis/rage.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'rage')">
                                             <div class="ui flowing mini popup top center">
-                                                Kaat ke rakh dungas
+                                                Kaat ke rakh dunga
                                             </div>
 
                                             <p class="count">{{emotion.count}}</p>
