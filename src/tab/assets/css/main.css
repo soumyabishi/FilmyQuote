@@ -245,6 +245,8 @@ section.quote {
   top: 37px;
   left: 220px;
   min-width: 250px; }
+  #search_movie_dropdown input {
+    min-width: 270px; }
   #search_movie_dropdown .close.icon {
     right: -76px;
     left: auto;
