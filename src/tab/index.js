@@ -62,6 +62,10 @@ new Vue({
         filmy_quotes_search_movie_year: {
             type: String,
             default: '0'
+        },
+        filmy_quotes_search_star: {
+            type: String,
+            default: '0'
         }
     }
 })

@@ -20,7 +20,7 @@
                 <input class="prompt" type="text" placeholder="Search movies..." v-else v-shortkey.avoid>
                 <i class="search icon"></i>
             </div>
-            <i class="close icon" @click="clear_search_movie_details()" v-if="movie_searched"></i>
+            <i class="close icon" @click="clear_search_movie_details();clear_search_star();" v-if="movie_searched"></i>
             <div class="results"></div>
         </div>
 
@@ -407,6 +407,7 @@
                 base_url: 'https://www.filmyquote.tk',
                 search_movie_name: '0',
                 search_movie_year: '0',
+                search_star: '0',
                 movie_searched: false,
                 no_quotes_found: false,
             }
@@ -437,6 +438,25 @@
                 this.$localStorage.set('filmy_quotes_search_movie_year', '0');
                 this.search_movie_name = '0';
                 this.search_movie_year = '0';
+                this.movie_searched = false;
+            },
+
+            check_search_star() {
+                this.search_star = this.$localStorage.get('filmy_quotes_search_star');
+                if (this.search_star != '0') {
+                    this.movie_searched = true;
+                }
+            },
+
+            set_search_star(star) {
+                this.$localStorage.set('filmy_quotes_search_star', star);
+                this.search_star = star;
+                this.movie_searched = true;
+            },
+
+            clear_search_star() {
+                this.$localStorage.set('filmy_quotes_search_star', '0');
+                this.search_star = '0';
                 this.movie_searched = false;
             },
 
@@ -643,6 +663,7 @@
                 }
                 url += '&year_min=' + this.sliderValue.value[0] + '&year_max=' + this.sliderValue.value[1];
                 url += '&movie_name=' + this.search_movie_name + '&movie_year=' + this.search_movie_year;
+                url += '&star=' + this.search_star;
                 this.$http.get(url).then(response => {
                     this.loading_quote = false;
 
@@ -778,18 +799,24 @@
 
         mounted() {
             this.check_search_movie_details();
+            this.check_search_star();
             this.check_first_time_user();
             this.fetch_tags();
             this.fetch_year_range();
             let vm = this;
             $('#search_movie_dropdown').search({
                 apiSettings: {
-                    url: this.base_url + '/api/search-movies/?query={query}',
+                    url: this.base_url + '/api/search-movies-star/?query={query}',
                 },
                 onSelect: function (result, response) {
-                    let movie_name = result.value.split('|')[0].trim();
-                    let movie_year = result.value.split('|')[1].trim();
-                    vm.set_search_movie_details(movie_name, movie_year);
+                    let search_type = result.type;
+                    if(search_type === 'movie'){
+                        let movie_name = result.value.split('|')[0].trim();
+                        let movie_year = result.value.split('|')[1].trim();
+                        vm.set_search_movie_details(movie_name, movie_year);
+                    }else{
+                        vm.set_search_star(result.value.trim())
+                    }
                     vm.fetch_year_range();
                 },
                 fields: {
