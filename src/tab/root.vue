@@ -15,9 +15,9 @@
 
         <div class="ui search" id="search_movie_dropdown">
             <div class="ui inverted transparent left icon input">
-                <input class="prompt" type="text" placeholder="Search movies..." v-model="search_movie_name"
+                <input class="prompt" type="text" placeholder="Filter by movie or actor name..." v-model="search_term"
                        v-if="movie_searched" v-shortkey.avoid>
-                <input class="prompt" type="text" placeholder="Search movies..." v-else v-shortkey.avoid>
+                <input class="prompt" type="text" placeholder="Filter by movie or actor name..." v-else v-shortkey.avoid>
                 <i class="search icon"></i>
             </div>
             <i class="close icon" @click="clear_search_movie_details();clear_search_star();" v-if="movie_searched"></i>
@@ -408,6 +408,7 @@
                 search_movie_name: '0',
                 search_movie_year: '0',
                 search_star: '0',
+                search_term: '',
                 movie_searched: false,
                 no_quotes_found: false,
             }
@@ -817,6 +818,7 @@
                     }else{
                         vm.set_search_star(result.value.trim())
                     }
+                    vm.search_term = result.text;
                     vm.fetch_year_range();
                 },
                 fields: {
