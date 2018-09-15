@@ -40,39 +40,39 @@ new Vue({
     },
     render: h => h(root),
     localStorage: {
-        filmy_quotes_user_added_dialogues: {
-            type: Object,
-            default: []
+        filmy_quote_first_time_user: {
+            type: Boolean,
+            default: true,
         },
-        filmy_quotes_user_added_moods: {
-            type: Object,
-            default: {}
-        },
-        filmy_quotes_user_added_tag_filters: {
-            type: Object,
-            default: []
-        },
-        filmy_quotes_user_added_min_year: {
-            type: Number,
-            default: 0
-        },
-        filmy_quotes_user_added_max_year: {
-            type: Number,
-            default: 0
-        },
-        filmy_quotes_user_first_time: {
+        filmy_quote_user_logged_in: {
             type: Boolean,
             default: false
         },
-        filmy_quotes_search_movie_name: {
+        filmy_quote_user_details: {
+            type: Object,
+            default: {
+                username: '',
+                full_name: '',
+                user_id: '',
+                logged_in_using: '',
+                bookmarks: [],
+                filters: {
+                    tags: [],
+                    start_year: 0,
+                    end_year: 0
+                },
+                reactions: []
+            }
+        },
+        filmy_quote_search_movie_name: {
             type: String,
             default: '0'
         },
-        filmy_quotes_search_movie_year: {
+        filmy_quote_search_movie_year: {
             type: String,
             default: '0'
         },
-        filmy_quotes_search_star: {
+        filmy_quote_search_star: {
             type: String,
             default: '0'
         }
