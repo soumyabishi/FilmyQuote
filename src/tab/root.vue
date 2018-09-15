@@ -82,7 +82,7 @@
                 <p style="margin-top:10px;color:#777">Famous bollywood movie dialogues in your new tab!</p>
 
                <h4 style="font-weight: 500;margin-bottom: 12px;margin-top: 70px;font-size: 17px;"> Made with love by</h4>
-                <p style="font-family:'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;"><a href="https://github.com/soumyabishi" target="_blank">Soumya Ranjan Bishi</a> and <a href="https://github.com/shiv-param" target="_blank">Shiv Prasad</a></p>
+                <p style="font-family:'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;"><a href="https://github.com/soumyabishi" target="_blank">Soumya Ranjan Bishi</a> and <a href="https://github.com/shiv-prasad" target="_blank">Shiv Prasad</a></p>
             </div>
 
 
