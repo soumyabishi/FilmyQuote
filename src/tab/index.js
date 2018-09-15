@@ -1,12 +1,14 @@
-import { Vue } from 'vue';
-import { root } from './root.vue';
-import { VueResource } from 'vue-resource';
-import { VueLocalStorage } from 'vue-localstorage';
+import Vue from 'vue';
+import root from './root.vue';
+import VueResource from 'vue-resource';
+import VueLocalStorage from 'vue-localstorage';
 import './assets/js/jquery-3.1.1.min';
 import './assets/js/semantic.min.js';
-import { vmodal } from 'vue-js-modal'
-import { VueProgressiveImage } from 'vue-progressive-image'
-import { firebase_config } from './firebase-config';
+import vmodal from 'vue-js-modal'
+import VueProgressiveImage from 'vue-progressive-image'
+import firebase_config from './firebase-config';
+import VueFirestore from 'vue-firestore';
+import Firebase from 'firebase';
 require('firebase/firestore');
 
 Vue.use(VueResource);
@@ -18,9 +20,6 @@ Vue.use(VueProgressiveImage, {
 });
 Vue.use(require('vue-shortkey'));
 Vue.use(require('vue-cookies'));
-
-import VueFirestore from 'vue-firestore';
-import Firebase from 'firebase';
 
 Vue.use(VueFirestore);
 
