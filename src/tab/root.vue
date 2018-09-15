@@ -4,15 +4,10 @@
             <p>{{ curr_time }}
                 <span> {{ curr_day }}</span>
             </p>
-            <!--<p>{{moment().format('hh:mm:ss a')}}-->
-                <!--<span>{{moment().format('ddd, MMMM D')}}</span>-->
-            <!--</p>-->
         </div>
-
         <a class="logo-container" v-on:click="get_quote()" v-shortkey="['space']" @shortkey="get_quote()">
             <img alt="FilmyQuote" src="./assets/img/logo.svg">
         </a>
-
         <div class="ui search" id="search_movie_dropdown">
             <div class="ui inverted transparent left icon input">
                 <input class="prompt" type="text" placeholder="Filter by movie or actor name..." v-model="search_term"
@@ -32,40 +27,27 @@
                transition="fade">
 
             <div class="dialog-content filter-modal-content">
-
                 <h3 class="ui header">
                     Pick some tags you're interested in
                     <div class="sub header">We will use them to customize the dialogues based on your interest</div>
-
                 </h3>
-
-
                 <button class="ui tiny button compact tag_button" v-for="tag in all_tags"
                         v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}"
                         @click="update_tag(tag.id, tag.selected)">
                     {{ tag.name }}
                 </button>
-
-
                 <h3 class="ui header">
                     Set year range (Showing {{sliderValue.value[0]}} - {{sliderValue.value[1]}})
                     <div class="sub header">Drag the slider to change</div>
-
                 </h3>
-
-
                 <vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max"
                             :interval="1"
                             tooltip='hover' :dot-size="6" :dot-width="12" :dot-height="12" :height="4"
                             :processStyle='{"backgroundColor": "#00b5ad"}'
                             :tooltipStyle='[{"backgroundColor": "#00b5ad", "borderColor": "#00b5ad"}, {"backgroundColor": "#00b5ad", "borderColor": "#00b5ad"}]'
                 >
-
                 </vue_slider>
-
             </div>
-
-
         </modal>
 
 
@@ -75,35 +57,26 @@
                height="auto"
                :scrollable="true"
                transition="fade">
-
             <div class="dialog-content filter-modal-content">
-
                 <img src="./assets/img/info_logo.svg">
                 <span style="color: #BCBCBC">v1.0.8</span>
-
                 <p style="margin-top:10px;color:#777">Famous bollywood movie dialogues in your new tab!</p>
-
-               <h4 style="font-weight: 500;margin-bottom: 12px;margin-top: 70px;font-size: 17px;"> Made with love by</h4>
-                <p style="font-family:'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;"><a href="https://github.com/soumyabishi" target="_blank">Soumya Ranjan Bishi</a> and <a href="https://github.com/shiv-prasad" target="_blank">Shiv Prasad</a></p>
+                <h4 style="font-weight: 500;margin-bottom: 12px;margin-top: 70px;font-size: 17px;"> Made with love by</h4>
+                <p style="font-family:'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;">
+                    <a href="https://github.com/soumyabishi" target="_blank">Soumya Ranjan Bishi</a> and <a href="https://github.com/shiv-prasad" target="_blank">Shiv Prasad</a>
+                </p>
             </div>
 
 
         </modal>
 
-
         <p class="spacebar">Hit <span>SPACEBAR</span> to shuffle.</p>
-
-        <!--<p class="made-by ibm-type-mono">-->
-        <!--Made with love by <a href="https://github.com/soumyabishi" target="_blank">Soumya</a> & <a href="https://github.com/shiv-param" target="_blank">Shiv</a>.-->
-        <!--</p>-->
-
 
         <!--<img src="./assets/img/lines.svg" class="lines">-->
         <!--<img src="./assets/img/lines_1.svg" class="lines_1">-->
         <!--<img src="./assets/img/circle.svg" class="circle">-->
 
         <p class="overlay-text">FilmyQuote</p>
-
 
         <img src="./assets/img/settings.svg" class="refine-dialogues-button" @click="open_filter_modal()"
              v-if="!movie_searched">
@@ -112,38 +85,6 @@
 
 
         <!--<img src="./assets/img/share.svg" class="share-dialogue-button"  @click="init_share()">-->
-
-
-        <!--<div class="ui modal filter_modal">-->
-        <!--&lt;!&ndash;<div class="ui header">&ndash;&gt;-->
-        <!--&lt;!&ndash;Preferences&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--<div class="content filter-modal-content">-->
-
-        <!--<h3 class="ui header">-->
-        <!--Pick some tags you're interested in-->
-        <!--<div class="sub header">We will use them to customize the dialogues based on your interest</div>-->
-
-        <!--</h3>-->
-
-
-        <!--<button class="ui tiny button tag_button" v-for="tag in all_tags" v-bind:class="{ 'teal': tag.selected, 'basic' : !tag.selected}" @click="update_tag(tag.id, tag.selected)">-->
-        <!--{{ tag.name }}-->
-        <!--</button>-->
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<h3 class="ui header">-->
-        <!--Set min and max movie year-->
-        <!--</h3>-->
-        <!--<vue_slider ref="slider" v-model="sliderValue.value" :min="sliderValue.min" :max="sliderValue.max" :interval="1"></vue_slider>-->
-        <!--</div>-->
-
-        <!--<div class="actions">-->
-        <!--<div class="ui deny basic button">Close</div>-->
-        <!--</div>-->
-
-        <!--</div>-->
 
         <div class="something-semantic">
             <div class="something-else-semantic">
@@ -168,146 +109,62 @@
                     <section class="quote" v-if="!loading_quote">
                         <div class="quote-wrapper">
                             <div class="poster">
-
                                 <progressive-img
                                         :src="actor_image_url_full" :blur="30"
                                         :placeholder="actor_image_url_thumb"
                                 />
-
                             </div>
 
                             <div class="content">
 
                                 <img src="./assets/img/quote.svg" alt="Quote" class="quote_icon">
+
                                 <h1 class="quote-text"
                                     v-bind:class="{'small': font_isSmall, 'medium': font_isMedium, 'large': font_isLarge}">
                                     {{filmyQuotes.dialogue.dialogue}}</h1>
+
                                 <p class="text">
                                     &mdash;&nbsp;{{filmyQuotes.dialogue.star}}, {{filmyQuotes.dialogue.movie_name}} ({{filmyQuotes.dialogue.movie_year}})</p>
 
-
                                 <div class="bollymoji">
                                     <ul class="reactions">
-
-
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('heart_eyes')}" v-if="emotion.mood == 'heart_eyes'">
-
                                             <img src="./assets/img/bollymojis/heart_eyes.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'heart_eyes')">
                                             <div class="ui flowing mini popup top center">
                                                 Pyaar ho jayega..
                                             </div>
-
                                             <p class="count">{{emotion.count}}</p>
                                         </li>
-
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('joy')}" v-if="emotion.mood == 'joy'">
                                             <img src="./assets/img/bollymojis/joy.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'joy')">
                                             <div class="ui flowing mini popup top center">
                                                 Bahuut maza aya
                                             </div>
-
                                             <p class="count">{{emotion.count}}</p>
                                         </li>
-
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('flushed')}" v-if="emotion.mood == 'flushed'">
-
                                             <img src="./assets/img/bollymojis/flushed.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'flushed')">
                                             <div class="ui flowing mini popup top center">
                                                 Wow! kya dialogue hai!
                                             </div>
-
                                             <p class="count">{{emotion.count}}</p>
                                         </li>
-
-
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('pensive')}" v-if="emotion.mood == 'pensive'">
-
                                             <img src="./assets/img/bollymojis/pensive.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'pensive')">
                                             <div class="ui flowing mini popup top center">
                                                 Mummy ko bol dunga
                                             </div>
-
                                             <p class="count">{{emotion.count}}</p>
                                         </li>
-
-
-
                                         <li v-for="emotion in filmyQuotes.dialogue.emotions" v-bind:class="{'active': check_reaction_added_for_mood('rage')}" v-if="emotion.mood == 'rage'">
-
                                             <img src="./assets/img/bollymojis/rage.png" class="bollymojis_text" v-on:click="add_reaction(filmyQuotes.dialogue.id, 'rage')">
                                             <div class="ui flowing mini popup top center">
                                                 Kaat ke rakh dunga
                                             </div>
-
                                             <p class="count">{{emotion.count}}</p>
                                         </li>
-
-
                                     </ul>
-
                                 </div>
-
-
-
-
-
-                                <!--<div class="emoji">-->
-                                    <!--<ul class="reactions">-->
-                                        <!--<li v-for="emotion in filmyQuotes.dialogue.emotions">-->
-                                            <!--<span class="reaction-emo">-->
-                                                <!--<emoji set="apple" emoji="heart_eyes" :size="25"-->
-                                                       <!--v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('heart_eyes')}"-->
-                                                       <!--v-if="emotion.mood == 'heart_eyes'"-->
-                                                       <!--v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'heart_eyes')"></emoji>-->
-                                                <!--<emoji set="apple" emoji="joy" :size="25"-->
-                                                       <!--v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('joy')}"-->
-                                                       <!--v-if="emotion.mood == 'joy'"-->
-                                                       <!--v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'joy')"></emoji>-->
-                                                <!--<emoji set="apple" emoji="flushed" :size="25"-->
-                                                       <!--v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('flushed')}"-->
-                                                       <!--v-if="emotion.mood == 'flushed'"-->
-                                                       <!--v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'flushed')"></emoji>-->
-                                                <!--<emoji set="apple" emoji="pensive" :size="25"-->
-                                                       <!--v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('pensive')}"-->
-                                                       <!--v-if="emotion.mood == 'pensive'"-->
-                                                       <!--v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'pensive')"></emoji>-->
-                                                <!--<emoji set="apple" emoji="rage" :size="25"-->
-                                                       <!--v-bind:class="{'animated bounceIn selected': check_reaction_added_for_mood('rage')}"-->
-                                                       <!--v-if="emotion.mood == 'rage'"-->
-                                                       <!--v-on:click="remove_reaction(filmyQuotes.dialogue.id, 'rage')"></emoji>-->
-                                            <!--</span>-->
-                                            <!--{{emotion.count}}-->
-                                        <!--</li>-->
-                                    <!--</ul>-->
-                                    <!--<div class="button add_reaction_button" :class="{'loading':adding_reaction}"-->
-                                         <!--v-if="reaction_not_added">Add reaction-->
-                                    <!--</div>-->
-                                    <!--<div class="ui flowing popup top right transition hidden" v-if="reaction_not_added">-->
-                                        <!--<ul class="emojis-wrapper">-->
-                                            <!--<li class="emo">-->
-                                                <!--<emoji set="apple" emoji="heart_eyes" :size="35"-->
-                                                       <!--v-on:click="add_reaction(filmyQuotes.dialogue.id,'heart_eyes')"></emoji>-->
-                                            <!--</li>-->
-                                            <!--<li class="emo">-->
-                                                <!--<emoji set="apple" emoji="joy" :size="35"-->
-                                                       <!--v-on:click="add_reaction(filmyQuotes.dialogue.id,'joy')"></emoji>-->
-                                            <!--</li>-->
-                                            <!--<li class="emo">-->
-                                                <!--<emoji set="apple" emoji="flushed" :size="35"-->
-                                                       <!--v-on:click="add_reaction(filmyQuotes.dialogue.id,'flushed')"></emoji>-->
-                                            <!--</li>-->
-                                            <!--<li class="emo">-->
-                                                <!--<emoji set="apple" emoji="pensive" :size="35"-->
-                                                       <!--v-on:click="add_reaction(filmyQuotes.dialogue.id,'pensive')"></emoji>-->
-                                            <!--</li>-->
-                                            <!--<li class="emo">-->
-                                                <!--<emoji set="apple" emoji="rage" :size="35"-->
-                                                       <!--v-on:click="add_reaction(filmyQuotes.dialogue.id,'rage')"></emoji>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                    <!--</div>-->
-
-                                <!--</div>-->
 
                             </div>
 
@@ -317,28 +174,19 @@
                     <section class="no-quote" v-if="no_quotes_found">
                     <p>Sorry, no dialogues to show! :(</p>
                     </section>
-
-
                 </div>
             </div>
         </div>
 
         <div class="quote-details" v-if="!loading_quote">
-
             <ul>
-                <!--<li class="movie-name">{{filmyQuotes.dialogue.movie_name}} <span-->
-                <!--class="year">({{filmyQuotes.dialogue.movie_year}})</span>-->
-                <!--</li>-->
                 <li class="tags">
                     <span v-for="(tag,index) in filmyQuotes.dialogue.tags">
                         {{ tag }}<span v-if="index<filmyQuotes.dialogue.tags.length-1">, </span>
                      </span>
                 </li>
             </ul>
-
         </div>
-
-
     </div>
 
 </template>
@@ -362,7 +210,6 @@
     ];
 
     export default {
-
 
         components: {
             picker: Picker,
@@ -516,7 +363,6 @@
 
             check_reacted_dialogue(dialogue_id) {
                 let all_reacted_dialogues = this.$localStorage.get('filmy_quotes_user_added_dialogues');
-                // console.log(all_reacted_dialogues);
                 let reacted = all_reacted_dialogues.indexOf(dialogue_id) > -1;
                 if (reacted) {
                     let all_reacted_moods = this.$localStorage.get('filmy_quotes_user_added_moods');
@@ -527,7 +373,6 @@
 
             check_filtered_tags() {
                 let all_filtered_tags = this.$localStorage.get("filmy_quotes_user_added_tag_filters");
-                // console.log(all_filtered_tags);
                 for (let i = 0; i < this.all_tags.length; i++) {
                     if (all_filtered_tags.indexOf(this.all_tags[i].id) > -1) {
                         this.all_tags[i].selected = true;
@@ -545,44 +390,33 @@
 
             add_tag_to_filtered_tags(tag_id) {
                 let all_filtered_tags = this.$localStorage.get("filmy_quotes_user_added_tag_filters");
-                // console.log(all_filtered_tags);
                 all_filtered_tags.push(tag_id);
-                // console.log(all_filtered_tags);
                 this.$localStorage.set('filmy_quotes_user_added_tag_filters', all_filtered_tags);
-                // console.log(this.$localStorage.get('filmy_quotes_user_added_tag_filters'));
                 this.check_filtered_tags();
             },
 
             remove_tag_from_filtered_tags: function (tag_id) {
                 let all_filtered_tags = this.$localStorage.get("filmy_quotes_user_added_tag_filters");
-                // console.log(all_filtered_tags);
                 let tag_index = all_filtered_tags.indexOf(tag_id);
-                // console.log(tag_index);
                 if (tag_index > -1) {
                     all_filtered_tags.splice(tag_index, 1)
                 }
-                // console.log(all_filtered_tags);
                 this.$localStorage.set('filmy_quotes_user_added_tag_filters', all_filtered_tags);
-                // console.log(this.$localStorage.get('filmy_quotes_user_added_tag_filters'));
                 this.check_filtered_tags();
             },
 
             add_to_reacted_dialogues(dialogue_id, emoji) {
                 let all_reacted_dialogues = this.$localStorage.get('filmy_quotes_user_added_dialogues');
                 let all_reacted_moods = this.$localStorage.get('filmy_quotes_user_added_moods');
-                // console.log(all_reacted_dialogues);
                 all_reacted_dialogues.push(dialogue_id);
                 all_reacted_moods.dialogue_id = emoji;
-                // console.log(all_reacted_dialogues);
                 this.$localStorage.set('filmy_quotes_user_added_dialogues', all_reacted_dialogues);
                 this.$localStorage.set('filmy_quotes_user_added_moods', all_reacted_moods);
-                // console.log(this.$localStorage.get('filmy_quotes_user_added_dialogues'));
             },
 
             remove_from_reacted_dialogues(dialogue_id) {
                 let all_reacted_dialogues = this.$localStorage.get('filmy_quotes_user_added_dialogues');
                 let all_reacted_moods = this.$localStorage.get('filmy_quotes_user_added_moods');
-                // console.log(all_reacted_dialogues);
                 let emotion_found = false;
                 let emotion_at = -1;
                 for (let i = 0; i < all_reacted_dialogues.length; i++) {
@@ -596,10 +430,8 @@
                     all_reacted_dialogues.splice(emotion_at, 1);
                 }
                 delete all_reacted_moods.dialogue_id;
-                // console.log(all_reacted_dialogues);
                 this.$localStorage.set('filmy_quotes_user_added_dialogues', all_reacted_dialogues);
                 this.$localStorage.set('filmy_quotes_user_added_moods', all_reacted_moods);
-                // console.log(this.$localStorage.get('filmy_quotes_user_added_dialogues'));
             },
 
             set_fontsize(dialogue_text) {
@@ -781,9 +613,6 @@
                         var link = document.createElement('a');
                         link.download = 'filmy-quote-' + vm.filmyQuotes.dialogue.id + '.jpeg';
                         link.href = dataUrl;
-                        console.log(link.download)
-//                        console.log(link.href)
-//                        link.click();
                     });
             },
 
@@ -831,13 +660,10 @@
                 vm.curr_day = moment().format('ddd, MMMM D');
             }, 1000);
         },
-
     }
 
 </script>
 
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
     @import './assets/css/semantic.min.css';
     @import './assets/css/fde6xbm.css';
@@ -847,5 +673,4 @@
     @import './assets/css/main.css';
     @import '../../node_modules/vue-range-slider/dist/vue-range-slider.css';
     @import '../../node_modules/vue-js-modal/dist/styles.css';
-
 </style>
