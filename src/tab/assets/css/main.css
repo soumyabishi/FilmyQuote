@@ -18,7 +18,7 @@ a {
   opacity: 0; }
 
 h1.quote-text {
-  font-family: freight-sans-pro,sans-serif;
+  font-family: inherit;
   padding-top: 0;
   margin-top: 0; }
 
