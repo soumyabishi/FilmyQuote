@@ -1,35 +1,44 @@
-import Vue from 'vue'
-import root from './root.vue'
-import VueResource from 'vue-resource'
-import VueLocalStorage from 'vue-localstorage'
+import { Vue } from 'vue';
+import { root } from './root.vue';
+import { VueResource } from 'vue-resource';
+import { VueLocalStorage } from 'vue-localstorage';
+import './assets/js/jquery-3.1.1.min';
+import './assets/js/semantic.min.js';
+import { vmodal } from 'vue-js-modal'
+import { VueProgressiveImage } from 'vue-progressive-image'
+import { firebase_config } from './firebase-config';
+require('firebase/firestore');
 
 Vue.use(VueResource);
 Vue.use(VueLocalStorage);
-
-import'./assets/js/jquery-3.1.1.min'
-import'./assets/js/semantic.min.js'
 Vue.use(require('vue-moment'));
-
-import vmodal from 'vue-js-modal'
-Vue.use(vmodal)
-
-
-import VueProgressiveImage from 'vue-progressive-image'
-
+Vue.use(vmodal);
 Vue.use(VueProgressiveImage, {
     placeholder: 'https://unsplash.it/1920/1080?image=20'
 });
-
 Vue.use(require('vue-shortkey'));
 Vue.use(require('vue-cookies'));
 
+import VueFirestore from 'vue-firestore';
+import Firebase from 'firebase';
 
+Vue.use(VueFirestore);
 
-Vue.config.productionTip = false
+let firebaseApp = Firebase.initializeApp(firebase_config);
+
+const firestore = firebaseApp.firestore();
+
+Vue.config.productionTip = false;
+
 /* eslint-disable no-new */
 new Vue({
-  el: '#root',
-  render: h => h(root),
+    el: '#root',
+    firestore() {
+        return {
+            users: firestore.collection('users')
+        }
+    },
+    render: h => h(root),
     localStorage: {
         filmy_quotes_user_added_dialogues: {
             type: Object,
@@ -68,4 +77,4 @@ new Vue({
             default: '0'
         }
     }
-})
+});
