@@ -40,6 +40,6 @@ module.exports = {
     chrome_url_overrides: {
         "newtab": "pages/app.html"
     },
-  content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  content_security_policy: "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://apis.google.com 'unsafe-eval'; object-src 'self'",
   web_accessible_resources: [ 'panel.html', 'js/content.js' ]
 }

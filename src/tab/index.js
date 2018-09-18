@@ -32,11 +32,6 @@ Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({
     el: '#root',
-    firestore() {
-        return {
-            users: firestore.collection('users')
-        }
-    },
     render: h => h(root),
     localStorage: {
         filmy_quote_first_time_user: {
@@ -50,11 +45,14 @@ new Vue({
         filmy_quote_user_details: {
             type: Object,
             default: {
+                credential: '',
+                refresh_token: '',
                 username: '',
                 full_name: '',
                 user_id: '',
-                logged_in_using: '',
+                photo_url: '',
                 bookmarks: [],
+                display_user_name: '',
                 filters: {
                     tags: [],
                     start_year: 0,
