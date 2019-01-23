@@ -701,7 +701,7 @@
                     this.loading_quote = false;
                     this.filmyQuotes = response.data;
                     if (this.filmyQuotes.dialogue.star_image_url) {
-                        this.actor_image_url_full = 'https://image.tmdb.org/t/p/w500_and_h500_face/' + this.filmyQuotes.dialogue.star_image_url;
+                        this.actor_image_url_full = 'https://image.tmdb.org/t/p/w300_and_h300_face/' + this.filmyQuotes.dialogue.star_image_url;
                         this.actor_image_url_thumb = 'https://image.tmdb.org/t/p/w50_and_h50_face/' + this.filmyQuotes.dialogue.star_image_url;
                     } else {
                         this.actor_image_url_full = placeHolderUrl;
