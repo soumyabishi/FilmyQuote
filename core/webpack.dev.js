@@ -6,7 +6,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const {styleLoaders} = require('./tools')
 module.exports = merge(baseWebpack, {
   // cheap-module-eval-source-map быстрее для разработки
-  watch: true,
+  watch: false,
   module: {
     rules: styleLoaders({ sourceMap: false })
   },
